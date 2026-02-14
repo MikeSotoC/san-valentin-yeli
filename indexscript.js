@@ -173,24 +173,14 @@ window.sayYes = function () {
     // CARGAR CELEBRATION SIN RECARGAR (SIN CORTAR MÚSICA)
     // =========================
 function loadCelebration() {
-
     fetch("celebration.html")
         .then(res => res.text())
         .then(html => {
-
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-
             const app = document.getElementById("app");
-            app.innerHTML = doc.body.innerHTML;
-            app.style.opacity = "1";
+            app.innerHTML = html;
 
             // Cargar CSS del celebration
-            const oldCss = document.getElementById("dynamicCss");
-            if (oldCss) oldCss.remove();
-
             const link = document.createElement("link");
-            link.id = "dynamicCss";
             link.rel = "stylesheet";
             link.href = "celebrationstyle.css";
             document.head.appendChild(link);
@@ -199,9 +189,9 @@ function loadCelebration() {
             const script = document.createElement("script");
             script.src = "celebrationscript.js";
             document.body.appendChild(script);
-        })
-        .catch(err => console.error(err));
+        });
 }
+
 
 
     // =========================
