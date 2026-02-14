@@ -64,6 +64,15 @@
             75% { transform: translateY(30px) rotate(-10deg); }
         }
 
+.yay-text {
+    font-size: 3.2rem;
+}
+
+.name-celebrate {
+    font-size: 3.8rem;
+}
+
+
         /* Decorative elements */
         .decoration {
             position: fixed;
