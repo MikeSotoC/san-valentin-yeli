@@ -616,6 +616,19 @@
         inset 0 0 20px rgba(255,105,180,0.1);
 }
 
+.relationship-section .countdown-item {
+    background: linear-gradient(
+        145deg,
+        rgba(30,20,60,0.9),
+        rgba(90,40,130,0.6)
+    );
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4),
+        0 0 20px rgba(255,105,180,0.25);
+}
+
+
 
         .love-meter-fill {
             height: 100%;
