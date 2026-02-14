@@ -797,16 +797,21 @@
 
 
         .countdown-number {
-            font-size: 1.8rem;
-            color: #ffffff;
-            font-weight: bold;
-        }
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px rgba(255,105,180,0.8),
+        0 0 20px rgba(168,85,247,0.5);
+}
 
         .countdown-label {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.6);
-            text-transform: uppercase;
-        }
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
 
         /* ============ CLICK HEARTS ============ */
         .click-heart {
