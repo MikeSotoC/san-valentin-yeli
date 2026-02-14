@@ -765,12 +765,36 @@
         }
 
         .countdown-item {
-            background: linear-gradient(145deg, rgba(168,85,247,0.2) 0%, rgba(255,105,180,0.15) 100%);
-            padding: 18px 22px;
-            border-radius: 15px;
-            min-width: 75px;
-            border: 1px solid rgba(255,105,180,0.3);
+                    background: linear-gradient(
+                                145deg,
+                                rgba(30, 20, 60, 0.9),
+                                rgba(80, 40, 120, 0.6)
+                    );
+                    
+                    padding: 20px 25px;
+                    border-radius: 18px;
+                    min-width: 90px;
+                    
+                    border: 1px solid rgba(255,105,180,0.4);
+                    
+                    box-shadow:
+                                0 10px 30px rgba(0,0,0,0.4),
+                                inset 0 0 15px rgba(255,105,180,0.15),
+                                0 0 20px rgba(168,85,247,0.2);
+                    
+                    backdrop-filter: blur(6px);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+
+        .countdown-item:hover {
+                    transform: translateY(-5px) scale(1.05);
+                    box-shadow:
+                                0 15px 40px rgba(255,105,180,0.4),
+                                0 0 30px rgba(168,85,247,0.4);
+        }
+
+
 
         .countdown-number {
             font-size: 1.8rem;
