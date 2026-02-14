@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
     // CONFIGURACIÓN
     // =========================
-    const START_TIME = 11;   // segundo inicial
+    const START_TIME = 0;   // segundo inicial
     const VOLUME = 0.4;
 
     let isPlaying = false;
     let userInteracted = false;
 
     music.volume = VOLUME;
-    music.loop = false; // controlaremos el loop manualmente
+    music.loop = false; // loop manual
 
     // =========================
     // VISUALIZADOR
@@ -48,9 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // =========================
-    // REPRODUCIR DESDE SEGUNDO
+    // REPRODUCIR
     // =========================
     function playMusic() {
+        // SIEMPRE iniciar desde el segundo configurado
         music.currentTime = START_TIME;
 
         music.play().then(() => {
@@ -58,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
             userInteracted = true;
             updateButton();
         }).catch(() => {
-            // Autoplay bloqueado
             waitForFirstInteraction();
         });
     }
@@ -76,14 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (isPlaying) {
             pauseMusic();
         } else {
-            playMusic();
+            playMusic(); // reinicia desde START_TIME
         }
     }
 
     musicBtn.addEventListener("click", toggleMusic);
 
     // =========================
-    // AUTOPLAY INTENTO
+    // AUTOPLAY (intento)
     // =========================
     function tryAutoplay() {
         music.currentTime = START_TIME;
@@ -93,13 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
             userInteracted = true;
             updateButton();
         }).catch(() => {
-            // Navegador lo bloqueó
             waitForFirstInteraction();
         });
     }
 
     // =========================
-    // PRIMER TOQUE (MÓVIL)
+    // PRIMER TOQUE (móvil)
     // =========================
     function waitForFirstInteraction() {
 
@@ -118,12 +117,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // =========================
-    // LOOP DESDE EL SEGUNDO 11
+    // LOOP desde segundo 11
     // =========================
     music.addEventListener("timeupdate", () => {
         if (!music.duration) return;
 
-        // Si faltan menos de 0.3s para terminar
         if (music.duration - music.currentTime < 0.3) {
             music.currentTime = START_TIME;
             music.play();
@@ -131,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // =========================
-    // PAUSAR SI CAMBIA DE PESTAÑA
+    // VISIBILIDAD
     // =========================
     document.addEventListener("visibilitychange", () => {
         if (!userInteracted) return;
