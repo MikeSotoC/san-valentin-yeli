@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Hacer global para HTML
     window.handleInteraction = function (event, type) {
+         fillLoveMeter(25);
         // Solo aumentar el amor en interacciones específicas
     if (type === "jar") {
         openLoveNote();
