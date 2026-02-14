@@ -738,10 +738,24 @@
         }
 
         .countdown-title {
-            color: #c8c8e0;
-            font-size: 1rem;
-            margin-bottom: 15px;
+                    font-size: 1.6rem;
+                    color: #ffffff;
+                    margin-bottom: 20px;
+                    text-align: center;
+                    font-weight: bold;
+                    
+                    background: linear-gradient(90deg, #ff69b4, #ffd700, #a855f7, #ff69b4);
+                    background-size: 300% 100%;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;                    
+                    animation: gradient-flow 4s linear infinite;
+                    
+                    text-shadow:
+                                0 0 15px rgba(255,105,180,0.6),
+                                0 0 30px rgba(168,85,247,0.4);
         }
+
 
         .countdown {
             display: flex;
