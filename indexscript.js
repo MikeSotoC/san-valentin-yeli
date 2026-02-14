@@ -173,6 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
     function loadCelebration() {
 
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+
         fetch("celebration.html")
             .then(response => response.text())
             .then(html => {
@@ -180,22 +184,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, "text/html");
 
-                // Reemplazar contenido
+                // =========================
+                // 1. Cargar CSS del HEAD
+                // =========================
+                const newLinks = doc.head.querySelectorAll("link[rel='stylesheet']");
+                newLinks.forEach(link => {
+                    const newLink = document.createElement("link");
+                    newLink.rel = "stylesheet";
+                    newLink.href = link.href;
+                    document.head.appendChild(newLink);
+                });
+
+                // =========================
+                // 2. Reemplazar BODY
+                // =========================
                 document.body.innerHTML = doc.body.innerHTML;
+
                 document.body.style.opacity = "1";
 
-                // Ejecutar scripts de celebration
-                const scripts = doc.querySelectorAll("script");
+                // =========================
+                // 3. Ejecutar scripts
+                // =========================
+                const scripts = doc.body.querySelectorAll("script");
                 scripts.forEach(oldScript => {
+                    const newScript = document.createElement("script");
                     if (oldScript.src) {
-                        const newScript = document.createElement("script");
                         newScript.src = oldScript.src;
-                        document.body.appendChild(newScript);
+                        newScript.defer = true;
+                    } else {
+                        newScript.textContent = oldScript.textContent;
                     }
+                    document.body.appendChild(newScript);
                 });
 
             });
-    }
+
+    }, 400);
+}
+
 
     // =========================
     // INICIALIZAR
