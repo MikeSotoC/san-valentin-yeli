@@ -10,6 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
+	
+	// =========================
+// SOBRE INTERACTIVO (CLICK REAL)
+// =========================
+const envelope = document.getElementById("loveEnvelope");
+
+if (envelope) {
+    envelope.addEventListener("click", function () {
+
+        // animación de apertura
+        envelope.classList.add("open");
+
+        // mostrar mensaje después
+        setTimeout(() => {
+            openLoveNote();
+        }, 500);
+
+    });
+}
+
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
@@ -75,38 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
             confettiParticles.push(new Confetti(true));
         }
     }
-
-    // Hacer global para HTML
-   window.handleInteraction = function (event, type) {
-
-    const LOVE_STEP = 100 / loveReasons.length;
-
-       
-
-    if (type === "jar") {
-        openLoveNote();
-        fillLoveMeter(LOVE_STEP); // 1 razón = 1 progreso
-        return;
-    }
-
-    if (type === "confetti") {
-        burstConfetti();
-        fillLoveMeter(100 / loveReasons.length);
-        return;
-    }
-
-    if (type === "hug") {
-        sendVirtualHug();
-        fillLoveMeter(LOVE_STEP / 2); // opcional: medio avance
-        return;
-    }
-
-    if (type === "heart") {
-        burstConfetti();
-        fillLoveMeter(LOVE_STEP / 3); // opcional: pequeño avance
-        return;
-    }
-};
 
 
     // =========================
@@ -197,25 +185,120 @@ function sendVirtualHug() {
     const msg = document.getElementById("hugMessage");
     const gif = document.getElementById("hugGif");
 
-    const hugs = [
-        "abrazo1.webp",
-        "abrazo2.webp"
-    ];
+    const hugs = ["abrazo1.webp", "abrazo2.webp"];
 
-    // Alternar entre los dos
     gif.src = hugs[hugIndex];
     hugIndex = (hugIndex + 1) % hugs.length;
+
+    // Reiniciar estados
+    hug.classList.remove("hide");
+    msg.classList.remove("hide");
 
     hug.classList.add("show");
     msg.classList.add("show");
 
     burstConfetti();
 
+    // Mantener visible unos segundos
     setTimeout(() => {
         hug.classList.remove("show");
         msg.classList.remove("show");
-    }, 3500);
+
+        hug.classList.add("hide");
+        msg.classList.add("hide");
+    }, 2800);
 }
+document.addEventListener('click', function(e) {
+
+    // Evita duplicar efecto en botones importantes (opcional)
+    if (
+    e.target.closest('.action-btn') ||
+    e.target.closest('.love-jar') ||
+    e.target.closest('.mega-heart') ||
+    e.target.closest('#loveMeterContainer') ||
+    e.target.closest('.music-btn') ||
+    e.target.closest('#hugAnimation') ||
+    e.target.closest('#loveNotePopup')
+) {
+    return;
+}
+
+
+    createClickHeart(e.clientX, e.clientY);
+});
+
+window.handleInteraction = function (event, type) {
+
+    createClickHeart(event.clientX, event.clientY);
+
+    const LOVE_STEP = 100 / loveReasons.length;
+
+    if (type === "jar") {
+    const envelope = document.getElementById("loveEnvelope");
+
+if (envelope) {
+    envelope.addEventListener("click", function () {
+
+        envelope.classList.add("open");
+
+        setTimeout(() => {
+            openLoveNote();
+        }, 250);
+
+        setTimeout(() => {
+            envelope.classList.remove("open");
+        }, 700);
+
+    });
+}
+
+
+
+    openLoveNote();
+    fillLoveMeter(100 / loveReasons.length);
+    return;
+}
+
+
+    if (type === "confetti") {
+        burstConfetti();
+        fillLoveMeter(LOVE_STEP);
+        return;
+    }
+
+    if (type === "hug") {
+        sendVirtualHug();
+        fillLoveMeter(LOVE_STEP / 2);
+        return;
+    }
+
+    if (type === "heart") {
+        burstConfetti();
+        fillLoveMeter(LOVE_STEP / 3);
+        return;
+    }
+};
+
+function createClickHeart(x, y) {
+    const hearts = ['💕', '💖', '💗', '💓', '💝'];
+
+    for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.className = 'click-heart';
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left = (x - 10 + (Math.random() - 0.5) * 40) + 'px';
+            heart.style.top = (y - 10 + (Math.random() - 0.5) * 40) + 'px';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 1000);
+        }, i * 80);
+    }
+}
+
 
 
     // =========================
