@@ -146,15 +146,27 @@ document.addEventListener("DOMContentLoaded", function () {
     // Botón Sí
     // =========================
     window.sayYes = function () {
-        createHeartBurst();
 
-        document.body.style.transition = 'all 0.5s ease';
-        document.body.style.background = 'radial-gradient(circle, #a855f7 0%, #0f0c29 100%)';
+    // =========================
+    // GUARDAR ESTADO DE LA MÚSICA
+    // =========================
+    const music = document.getElementById("bgMusic");
 
-        setTimeout(() => {
-            window.location.href = 'celebration.html';
-        }, 800);
-    };
+    if (music) {
+        sessionStorage.setItem("musicTime", music.currentTime);
+        sessionStorage.setItem("musicWasPlaying", !music.paused);
+    }
+
+    createHeartBurst();
+
+    document.body.style.transition = 'all 0.5s ease';
+    document.body.style.background = 'radial-gradient(circle, #a855f7 0%, #0f0c29 100%)';
+
+    setTimeout(() => {
+        window.location.href = 'celebration.html';
+    }, 800);
+};
+
 
     // =========================
     // Explosión de corazones
