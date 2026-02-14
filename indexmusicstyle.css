@@ -1,3 +1,99 @@
+/* =========================
+   MODO CELULAR
+========================= */
+@media (max-width: 768px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .celebration-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .love-card {
+        width: 100%;
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .love-text {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .love-title {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .yay-text {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .name-celebrate {
+        font-size: 18px;
+        display: block;
+        margin-top: 5px;
+    }
+
+    /* Botones */
+    .buttons-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .action-btn {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    /* Medidor */
+    .love-meter-wrapper {
+        width: 100%;
+    }
+
+    .countdown {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .countdown-item {
+        width: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .card {
+        width: 95%;
+        padding: 18px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .question {
+        font-size: 18px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 8px;
+        font-size: 16px;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+    }
+}
+
+
 .music-btn {
             position: fixed;
             bottom: 20px;
