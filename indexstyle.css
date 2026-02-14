@@ -5,10 +5,11 @@
         }
 
         html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
         body {
             display: flex;
@@ -532,3 +533,68 @@ filter: drop-shadow(0 0 15px rgba(255,215,0,0.8));
                 margin-top: 10px;
             }
         }
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+@media (max-width: 600px) {
+
+    body {
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .teddy-wrapper {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        animation: none;
+        margin-top: 10px;
+    }
+
+    .teddy-head {
+        font-size: 90px;
+    }
+
+    .teddy-paw-left,
+    .teddy-paw-right {
+        display: none; /* evita que estorben en pantalla chica */
+    }
+
+    .teddy-feet {
+        display: none;
+    }
+
+    .card {
+        max-width: 92vw;
+        max-height: none;
+        padding: 20px 18px;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .hover-message {
+        white-space: normal;
+        text-align: center;
+        padding: 10px 15px;
+    }
+}
+@media (max-height: 650px) {
+    .teddy-head {
+        font-size: 70px;
+    }
+
+    .card {
+        margin-top: 10px;
+    }
+}
+
