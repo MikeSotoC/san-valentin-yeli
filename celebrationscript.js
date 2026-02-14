@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (type === "confetti") {
         burstConfetti();
+        fillLoveMeter(100 / loveReasons.length);
         return;
     }
 
