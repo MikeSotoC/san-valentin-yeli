@@ -1,57 +1,129 @@
-<!-- Confetti Canvas -->
-<canvas id="confettiCanvas"></canvas>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 ¡Yeli dijo que sí! 💖</title>
 
-<!-- Fondo flotante -->
-<div class="floating-bg" id="floatingBg"></div>
+    <!-- CSS -->
+    <link rel="stylesheet" href="celebrationstyle.css">
+</head>
+<body>
 
-<!-- Elementos decorativos -->
-<div class="decoration deco-1">🧸</div>
-<div class="decoration deco-2">🌸</div>
-<div class="decoration deco-3">💐</div>
-<div class="decoration deco-4">🧸</div>
-<div class="decoration deco-5">🌺</div>
-<div class="decoration deco-6">🌷</div>
+    <!-- =========================
+         FONDO Y DECORACIÓN
+    ========================= -->
 
-<!-- Contenido principal -->
-<div class="celebration-container">
+    <canvas id="confettiCanvas"></canvas>
+    <div class="floating-bg" id="floatingBg"></div>
 
-    <div class="mega-heart" onclick="handleInteraction(event, 'heart')">💖</div>
-    
-    <div class="main-message">
-        <h1 class="yay-text">
-            ¡Feliz San Valentín! 🎉
-            <span class="name-celebrate">
-                Nuestro primer San Valentín juntos, Yeli 💖
-            </span>
-        </h1>
-        <p class="sub-message">
-            Gracias por hacer mi vida más feliz cada día 💕
-        </p>
-    </div>
+    <div class="decoration deco-1">🧸</div>
+    <div class="decoration deco-2">🌸</div>
+    <div class="decoration deco-3">💐</div>
+    <div class="decoration deco-4">🧸</div>
+    <div class="decoration deco-5">🌺</div>
+    <div class="decoration deco-6">🌷</div>
 
-    <div class="love-card">
-        <h2 class="love-title">💌 Para mi Amorcito Yeli 💌</h2>
 
-        <div class="love-text">
-            <p>Si algo he aprendido contigo, es que el amor verdadero no es perfecto… es valiente.</p>
-            <p>Porque el amor real es el que se queda, el que no se rinde cuando las cosas se ponen difíciles.</p>
-            <p>Y si el amor es elegir a alguien una y otra vez… entonces yo te elijo.</p>
+    <!-- =========================
+         CONTENIDO PRINCIPAL
+    ========================= -->
+    <div class="celebration-container">
 
-            <p class="signature">
-                Siempre contigo,<br>
-                Tu Piuchi ❤️
+        <div class="mega-heart" onclick="handleInteraction(event, 'heart')">💖</div>
+        
+        <div class="main-message">
+            <h1 class="yay-text">
+                ¡Feliz San Valentín! 🎉
+                <span class="name-celebrate">
+                    Nuestro primer San Valentín juntos, Yeli 💖
+                </span>
+            </h1>
+
+            <p class="sub-message">
+                Gracias por hacer mi vida más feliz cada día 💕
             </p>
         </div>
+
+        <!-- =========================
+             CARTA COMPLETA
+        ========================= -->
+        <div class="love-card">
+            <h2 class="love-title">💌 Para mi Amorcito Yeli 💌</h2>
+            
+            <div class="love-text">
+
+                <p>Si algo he aprendido contigo, es que el amor verdadero no es perfecto… es valiente. Porque lo nuestro no ha sido un camino fácil, y aun así, aquí estamos.</p>
+
+                <p>Hemos vivido momentos hermosos, de risas, cariño y paz… pero también momentos difíciles, de dudas, silencios, distancia y cansancio. Y aunque hubo días en los que todo parecía complicado, nunca dejamos de intentarlo. Nunca dejamos de luchar por nosotros.</p>
+
+                <p>Y eso es lo que hace que lo nuestro sea tan especial.</p>
+
+                <p>Porque el amor real no es el que solo está cuando todo es bonito… el amor real es el que se queda, el que tiene paciencia, el que aprende, el que perdona, el que entiende… el que no se rinde cuando las cosas se ponen difíciles.</p>
+
+                <p>Contigo he aprendido que amar es elegir. Elegir quedarme. Elegir comprender. Elegir crecer. Elegir seguir caminando juntos, incluso cuando el camino no es perfecto.</p>
+
+                <p>Hemos cambiado, hemos aprendido, hemos cometido errores, pero también hemos crecido… y cada obstáculo que superamos hizo nuestro vínculo más fuerte, más sincero y más real.</p>
+
+                <p>Este es nuestro <span class="highlight">primer San Valentín juntos</span>, y para mí significa mucho más que una fecha. Es un recordatorio de todo lo que hemos construido, de todo lo que hemos superado y de lo fuerte que es lo nuestro.</p>
+
+                <p>Gracias por tu paciencia. Gracias por tu cariño. Gracias por tu esfuerzo. Gracias por quedarte, incluso en los días difíciles. Gracias por no rendirte con nosotros.</p>
+
+                <p>Porque si algo tengo claro, es que no quiero un amor perfecto… te quiero a ti. Con tus virtudes, tus miedos, tus sueños y tu forma única de ser.</p>
+
+                <p>Quiero seguir creciendo contigo. Quiero seguir aprendiendo contigo. Quiero seguir construyendo esta historia, paso a paso, día a día, momento a momento.</p>
+
+                <p>Y si el amor es elegir a alguien una y otra vez… entonces yo te elijo. Hoy, mañana y en cada día que venga.</p>
+
+                <p class="signature">
+                    En los días buenos, en los días difíciles y en todos los que aún nos esperan ❤️<br>
+                    Siempre contigo,<br>
+                    Tu Piuchi
+                </p>
+
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="buttons-row">
+            <button class="action-btn" onclick="handleInteraction(event, 'confetti')">
+                🎉 ¡Más confeti!
+            </button>
+
+            <button class="action-btn secondary" onclick="handleInteraction(event, 'hug')">
+                🤗 ¡Enviar abrazo!
+            </button>
+        </div>
+
     </div>
 
-    <!-- Botones -->
-    <div class="buttons-row">
-        <button class="action-btn" onclick="handleInteraction(event, 'confetti')">
-            🎉 ¡Más confeti!
-        </button>
-        <button class="action-btn secondary" onclick="handleInteraction(event, 'hug')">
-            🤗 ¡Enviar abrazo!
-        </button>
+
+    <!-- =========================
+         ABRAZO
+    ========================= -->
+    <div class="hug-animation" id="hugAnimation">
+        <img id="hugGif" src="abrazo1.webp" alt="Abrazo virtual" class="hug-gif">
     </div>
 
-</div>
+    <div class="hug-message" id="hugMessage">
+        ¡Te envío el abrazo más grande del mundo, Yeli! 🤗💖
+    </div>
+
+
+    <!-- =========================
+         MÚSICA
+    ========================= -->
+    <audio id="bgMusic" loop>
+        <source src="Melendi-La_promesa.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicToggle" class="music-btn">🎵</button>
+
+
+    <!-- =========================
+         SCRIPT
+    ========================= -->
+    <script src="celebrationscript.js"></script>
+
+</body>
+</html>
