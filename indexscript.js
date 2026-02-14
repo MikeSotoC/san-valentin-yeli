@@ -124,7 +124,6 @@ window.sayYes = function () {
 
     const music = document.getElementById("bgMusic");
 
-    // Guardar estado de música
     if (music) {
         sessionStorage.setItem("musicTime", music.currentTime);
         sessionStorage.setItem("musicWasPlaying", !music.paused);
@@ -139,6 +138,7 @@ window.sayYes = function () {
         window.location.href = "celebration.html";
     }, 800);
 };
+
 
 
 
@@ -178,41 +178,6 @@ window.sayYes = function () {
             setTimeout(() => item.remove(), 800);
         }
     }
-
-    // =========================
-    // CARGAR CELEBRATION SIN RECARGAR (SIN CORTAR MÚSICA)
-    // =========================
-function loadCelebration() {
-
-    fetch("celebration.html")
-        .then(response => response.text())
-        .then(html => {
-
-            // Reemplazar contenido
-            document.getElementById("app").innerHTML = html;
-
-            // Cargar CSS (solo una vez)
-            if (!document.getElementById("celebrationCSS")) {
-                const link = document.createElement("link");
-                link.id = "celebrationCSS";
-                link.rel = "stylesheet";
-                link.href = "celebrationstyle.css";
-                document.head.appendChild(link);
-            }
-
-            // Cargar JS y FORZAR ejecución
-            const script = document.createElement("script");
-            script.src = "celebrationscript.js";
-            script.defer = true;
-
-            script.onload = function () {
-                console.log("celebrationscript cargado correctamente");
-            };
-
-            document.body.appendChild(script);
-        })
-        .catch(err => console.error("Error cargando celebration:", err));
-}
 
 
 
