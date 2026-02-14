@@ -598,6 +598,25 @@
             transform: scaleX(0);
         }
 
+.relationship-section {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 20px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255,105,180,0.08),
+        rgba(168,85,247,0.08)
+    );
+
+    border: 1px solid rgba(255,105,180,0.25);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.3),
+        inset 0 0 20px rgba(255,105,180,0.1);
+}
+
+
         .love-meter-fill {
             height: 100%;
             background: linear-gradient(90deg, #ff69b4, #ff1493, #a855f7, #ff69b4);
