@@ -122,23 +122,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
 window.sayYes = function () {
 
-    const music = document.getElementById("bgMusic");
-
-    // Guardar estado de la música
-    if (music) {
-        sessionStorage.setItem("musicTime", music.currentTime);
-        sessionStorage.setItem("musicWasPlaying", !music.paused);
-    }
-
     createHeartBurst();
 
-    document.body.style.transition = "opacity 0.5s";
-    document.body.style.opacity = "0";
+    const app = document.getElementById("app");
+    app.style.transition = "opacity 0.6s ease";
+    app.style.opacity = "0";
 
-    setTimeout(() => {
-        window.location.href = "celebration.html";
-    }, 500);
+    setTimeout(loadCelebration, 600);
 };
+
 
 
     // =========================
@@ -182,52 +174,34 @@ window.sayYes = function () {
     // =========================
 function loadCelebration() {
 
-    document.body.style.opacity = "0";
+    fetch("celebration.html")
+        .then(res => res.text())
+        .then(html => {
 
-    setTimeout(() => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
 
-        fetch("celebration.html")
-            .then(response => response.text())
-            .then(html => {
+            const app = document.getElementById("app");
+            app.innerHTML = doc.body.innerHTML;
+            app.style.opacity = "1";
 
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, "text/html");
+            // Cargar CSS del celebration
+            const oldCss = document.getElementById("dynamicCss");
+            if (oldCss) oldCss.remove();
 
-                // =========================
-                // 1. Cargar CSS
-                // =========================
-                const links = doc.head.querySelectorAll("link[rel='stylesheet']");
-                links.forEach(link => {
-                    const newLink = document.createElement("link");
-                    newLink.rel = "stylesheet";
-                    newLink.href = link.href;
-                    document.head.appendChild(newLink);
-                });
+            const link = document.createElement("link");
+            link.id = "dynamicCss";
+            link.rel = "stylesheet";
+            link.href = "celebrationstyle.css";
+            document.head.appendChild(link);
 
-                // =========================
-                // 2. Reemplazar contenido
-                // =========================
-                document.body.innerHTML = doc.body.innerHTML;
-
-                // =========================
-                // 3. Cargar scripts MANUALMENTE
-                // =========================
-                const scriptTags = doc.body.querySelectorAll("script[src]");
-
-                scriptTags.forEach(tag => {
-                    const script = document.createElement("script");
-                    script.src = tag.getAttribute("src");
-                    script.async = false;
-                    document.body.appendChild(script);
-                });
-
-                document.body.style.opacity = "1";
-
-            });
-
-    }, 400);
+            // Ejecutar JS del celebration
+            const script = document.createElement("script");
+            script.src = "celebrationscript.js";
+            document.body.appendChild(script);
+        })
+        .catch(err => console.error(err));
 }
-
 
 
     // =========================
