@@ -173,22 +173,23 @@
 
         // ========== LOVE JAR ==========
         const loveReasons = [
-            { emoji: "😊", text: "I love your beautiful smile that lights up my entire world." },
-            { emoji: "💭", text: "I love how you're always on my mind, from morning till night." },
-            { emoji: "🎵", text: "I love your laugh - it's my favorite sound in the universe." },
-            { emoji: "🤗", text: "I love how safe and warm I feel when I'm with you." },
-            { emoji: "✨", text: "I love how you make ordinary moments feel magical." },
-            { emoji: "💪", text: "I love how you support me and believe in me always." },
-            { emoji: "🦋", text: "I love the butterflies I still get when I see you." },
-            { emoji: "🌟", text: "I love how you inspire me to be a better person every day." },
-            { emoji: "🥰", text: "I love the way you look at me - like I'm your whole world." },
-            { emoji: "💕", text: "I love that you chose me, and I'd choose you in every lifetime." },
-            { emoji: "🌈", text: "I love how you bring color and joy into my life." },
-            { emoji: "💖", text: "I love you simply because you're YOU, Khushi." },
-            { emoji: "🏠", text: "I love how anywhere feels like home when I'm with you." },
-            { emoji: "🤝", text: "I love that you're my best friend and my soulmate." },
-            { emoji: "💫", text: "I love every little thing about you - the list is endless!" }
+                { emoji: "😊", text: "Amo tu hermosa sonrisa que ilumina todo mi mundo." },
+                { emoji: "💭", text: "Amo que siempre estás en mis pensamientos, desde que despierto hasta que duermo." },
+                { emoji: "🎵", text: "Amo tu risa, es mi sonido favorito en todo el universo." },
+                { emoji: "🤗", text: "Amo la paz y la calidez que siento cuando estoy contigo." },
+                { emoji: "✨", text: "Amo cómo haces que los momentos simples se vuelvan mágicos." },
+                { emoji: "💪", text: "Amo cómo me apoyas y siempre crees en mí." },
+                { emoji: "🦋", text: "Amo las mariposas que todavía siento cuando te veo." },
+                { emoji: "🌟", text: "Amo cómo me inspiras a ser mejor cada día." },
+                { emoji: "🥰", text: "Amo la forma en que me miras, como si fuera tu mundo." },
+                { emoji: "💕", text: "Amo que me hayas elegido, y yo te elegiría en cada vida." },
+                { emoji: "🌈", text: "Amo cómo llenas mi vida de color y alegría." },
+                { emoji: "💖", text: "Te amo simplemente por ser tú, Yeli." },
+                { emoji: "🏠", text: "Amo que cualquier lugar se siente como hogar cuando estoy contigo." },
+                { emoji: "🤝", text: "Amo que seas mi mejor amiga y mi persona especial." },
+                { emoji: "💫", text: "Amo cada pequeño detalle de ti… y la lista nunca termina." }
         ];
+
 
         let currentReasonIndex = 0;
 
@@ -267,12 +268,13 @@
         let infinityTimeout = null;
 
         const loveMeterMessages = [
-            "Keep tapping! 💕",
-            "Love is growing! 💖",
-            "So much love! 💗",
-            "Almost there! 💓",
-            "Overflowing! 💝"
+                "¡Sigue tocando! 💕",
+                "¡El amor está creciendo! 💖",
+                "¡Muchísimo amor! 💗",
+                "¡Casi llegamos! 💓",
+                "¡Amor desbordándose! 💝"
         ];
+
 
         function fillLoveMeter(amount = 10, sourceX = null, sourceY = null) {
             if (sourceX !== null && sourceY !== null) {
