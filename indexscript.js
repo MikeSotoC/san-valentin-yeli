@@ -124,6 +124,7 @@ window.sayYes = function () {
 
     const music = document.getElementById("bgMusic");
 
+    // Guardar estado de la música
     if (music) {
         sessionStorage.setItem("musicTime", music.currentTime);
         sessionStorage.setItem("musicWasPlaying", !music.paused);
@@ -135,8 +136,7 @@ window.sayYes = function () {
     document.body.style.opacity = "0";
 
     setTimeout(() => {
-        document.body.style.opacity = "1";
-        loadCelebration();
+        window.location.href = "celebration.html";
     }, 400);
 };
 
