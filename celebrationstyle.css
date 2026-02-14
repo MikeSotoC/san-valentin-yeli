@@ -1042,3 +1042,125 @@
                 padding: 15px 25px;
             }
         }
+
+/* =========================
+   SOBRE DE AMOR
+========================= */
+
+.envelope-box {
+    width: 170px;
+    height: 150px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 22px;
+    border: 2px solid rgba(168,85,247,0.35);
+    box-shadow: 
+        0 10px 40px rgba(168,85,247,0.15),
+        inset 0 0 25px rgba(168,85,247,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CONTENEDOR HOVER */
+.envelope-hover {
+    display: inline-block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Crece al pasar el mouse */
+.envelope-hover:hover {
+    transform: scale(1.35);
+    filter: drop-shadow(0 15px 35px rgba(168,85,247,0.6));
+}
+
+/* Pausar balanceo al hover */
+.envelope-hover:hover .love-envelope {
+    animation-play-state: paused;
+}
+
+/* SOBRE */
+.love-envelope {
+    position: relative;
+    width: 110px;
+    height: 70px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    animation: envelope-swing 2.5s ease-in-out infinite;
+}
+
+/* Balanceo */
+@keyframes envelope-swing {
+    0%,100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+/* Parte trasera */
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f2e6d8, #e8d8c3);
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* Solapa */
+.envelope-flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e6d3bd, #d8c0a6);
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin: top;
+    transition: transform 0.6s ease;
+}
+
+/* Estado abierto */
+.love-envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+/* Corazón que sale */
+.envelope-heart {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    font-size: 28px;
+    opacity: 0;
+}
+
+.love-envelope.open .envelope-heart {
+    animation: heart-pop 0.7s ease forwards;
+}
+
+@keyframes heart-pop {
+    0% {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(-50%) translateY(-25px) scale(1.4);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-45px) scale(1);
+        opacity: 0;
+    }
+}
+.love-jar-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.love-jar-section .envelope-box {
+    margin: 0 auto;
+}
+.envelope-box {
+    width: 170px;
+    height: 150px;
+    margin: 0 auto;   /* ← centra */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
