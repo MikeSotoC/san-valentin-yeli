@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
-    <title>💖 Khushi Said Yes! 💖</title>
+    <title>💖 ¡Yeli dijo que sí! 💖</title>
     
     <!-- CSS externo -->
     <link rel="stylesheet" href="celebrationstyle.css">
@@ -12,10 +12,10 @@
     <!-- Confetti Canvas -->
     <canvas id="confettiCanvas"></canvas>
 
-    <!-- Floating Background -->
+    <!-- Fondo flotante -->
     <div class="floating-bg" id="floatingBg"></div>
 
-    <!-- Decorative Elements -->
+    <!-- Elementos decorativos -->
     <div class="decoration deco-1">🧸</div>
     <div class="decoration deco-2">🌸</div>
     <div class="decoration deco-3">💐</div>
@@ -23,16 +23,16 @@
     <div class="decoration deco-5">🌺</div>
     <div class="decoration deco-6">🌷</div>
 
-    <!-- Main Content -->
+    <!-- Contenido principal -->
     <div class="celebration-container">
         <div class="mega-heart" id="megaHeart" onclick="handleInteraction(event, 'heart')">💖</div>
         
         <div class="main-message">
             <h1 class="yay-text">
-                YAY! 🎉
-                <span class="name-celebrate">Khushi Said Yes!</span>
+                ¡SÍ! 🎉
+                <span class="name-celebrate">¡Yeli dijo que sí!</span>
             </h1>
-            <p class="sub-message">You just made me the happiest person ever! 💕</p>
+            <p class="sub-message">Acabas de hacerme la persona más feliz del mundo 💕</p>
         </div>
 
         <div class="love-card">
@@ -41,45 +41,44 @@
             <span class="corner-deco corner-bl">✨</span>
             <span class="corner-deco corner-br">✨</span>
             
-            <h2 class="love-title">💌 My Dearest Khushi 💌</h2>
+            <h2 class="love-title">💌 Para mi Amorcito Yeli 💌</h2>
             
             <div class="love-text">
-                <p>From the moment I met you, I knew you were special. Every day with you feels like a beautiful adventure, and I can't imagine my life without your smile, your laugh, and your love.</p>
+                <p>Desde el momento en que llegaste a mi vida, supe que eras alguien especial. Cada día contigo se siente como una hermosa aventura, y no puedo imaginar mi mundo sin tu sonrisa, tu risa y tu cariño.</p>
                 
-                <p>You make every ordinary moment <span class="highlight">extraordinary</span>, and I fall more in love with you with each passing day. Thank you for being you – my best friend, my confidant, and my forever Valentine. 💫</p>
+                <p>Tú haces que cada momento sencillo se vuelva <span class="highlight">extraordinario</span>, y cada día me enamoro un poco más de ti. Gracias por ser tú: mi mejor amiga, mi apoyo y mi persona favorita. 💫</p>
                 
-                <p>Here's to us, to love, and to countless beautiful memories together! 💕</p>
+                <p>Por nosotros, por el amor y por todos los recuerdos maravillosos que aún nos esperan. 💕</p>
                 
-                <p class="signature">Forever & Always Yours, ❤️<br>Your Valentine</p>
+                <p class="signature">Siempre tuyo ❤️<br>Tu Piuchi! ❤️</p>
             </div>
         </div>
 
-        <!-- Interactive Buttons -->
+        <!-- Botones interactivos -->
         <div class="buttons-row">
-            <button class="action-btn" onclick="handleInteraction(event, 'confetti')">🎉 More Confetti!</button>
-            <button class="action-btn secondary" onclick="handleInteraction(event, 'hug')">🤗 Send a Hug!</button>
+            <button class="action-btn" onclick="handleInteraction(event, 'confetti')">🎉 ¡Más confeti!</button>
+            <button class="action-btn secondary" onclick="handleInteraction(event, 'hug')">🤗 ¡Enviar abrazo!</button>
         </div>
 
-        <!-- Love Jar Section -->
+        <!-- Love Jar -->
         <div class="love-jar-section">
-            <h3 class="love-jar-title">✨ Tap the jar to see why I love you! ✨</h3>
+            <h3 class="love-jar-title">✨ Toca el frasco para ver por qué te amo ✨</h3>
             <div class="love-jar-container">
                 <div class="love-jar" onclick="handleInteraction(event, 'jar')">🏺</div>
             </div>
-            <p class="jar-hint">Each tap reveals a reason & fills the love meter! 💕</p>
+            <p class="jar-hint">Cada toque revela una razón y llena el medidor de amor 💕</p>
         </div>
 
-        <!-- Love Meter - MORPHING INFINITY -->
+        <!-- Medidor de amor -->
         <div class="love-meter-section">
-            <p class="love-meter-title">💕 Our Love Meter 💕</p>
+            <p class="love-meter-title">💕 Nuestro medidor de amor 💕</p>
             
             <div class="love-meter-wrapper">
-                <!-- Regular Bar -->
                 <div class="love-meter-container" id="loveMeterContainer" onclick="handleInteraction(event, 'meter')">
                     <div class="love-meter-fill" id="loveMeterFill"></div>
                 </div>
 
-                <!-- Infinity Symbol (Hidden by default) -->
+                <!-- Infinito -->
                 <div class="infinity-container" id="infinityContainer">
                     <span class="infinity-sparkle">✨</span>
                     <span class="infinity-sparkle">💖</span>
@@ -88,42 +87,9 @@
                     
                     <div class="infinity-svg-wrapper">
                         <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Gradient Definition -->
-                            <defs>
-                                <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#ff69b4">
-                                        <animate attributeName="stop-color" 
-                                            values="#ff69b4;#ff1493;#a855f7;#ffd700;#ff69b4" 
-                                            dur="3s" repeatCount="indefinite"/>
-                                    </stop>
-                                    <stop offset="25%" style="stop-color:#ff1493">
-                                        <animate attributeName="stop-color" 
-                                            values="#ff1493;#a855f7;#ffd700;#ff69b4;#ff1493" 
-                                            dur="3s" repeatCount="indefinite"/>
-                                    </stop>
-                                    <stop offset="50%" style="stop-color:#a855f7">
-                                        <animate attributeName="stop-color" 
-                                            values="#a855f7;#ffd700;#ff69b4;#ff1493;#a855f7" 
-                                            dur="3s" repeatCount="indefinite"/>
-                                    </stop>
-                                    <stop offset="75%" style="stop-color:#ffd700">
-                                        <animate attributeName="stop-color" 
-                                            values="#ffd700;#ff69b4;#ff1493;#a855f7;#ffd700" 
-                                            dur="3s" repeatCount="indefinite"/>
-                                    </stop>
-                                    <stop offset="100%" style="stop-color:#ff69b4">
-                                        <animate attributeName="stop-color" 
-                                            values="#ff69b4;#ff1493;#a855f7;#ffd700;#ff69b4" 
-                                            dur="3s" repeatCount="indefinite"/>
-                                    </stop>
-                                </linearGradient>
-                            </defs>
-                            
-                            <!-- Background Path -->
                             <path class="infinity-path infinity-path-bg" 
                                 d="M100,40 C100,40 130,10 160,10 C190,10 190,70 160,70 C130,70 100,40 100,40 C100,40 70,10 40,10 C10,10 10,70 40,70 C70,70 100,40 100,40"/>
                             
-                            <!-- Animated Fill Path -->
                             <path class="infinity-path infinity-path-fill" 
                                 d="M100,40 C100,40 130,10 160,10 C190,10 190,70 160,70 C130,70 100,40 100,40 C100,40 70,10 40,10 C10,10 10,70 40,70 C70,70 100,40 100,40"/>
                         </svg>
@@ -131,47 +97,46 @@
                 </div>
             </div>
             
-            <p class="love-meter-text" id="loveMeterText">Tap anywhere to fill with love!</p>
+            <p class="love-meter-text" id="loveMeterText">Toca para llenarlo de amor</p>
         </div>
 
-        <!-- Countdown -->
+        <!-- Cuenta regresiva -->
         <div class="countdown-section" id="countdownSection">
-            <p class="countdown-title">⏰ Countdown to Valentine's Day 2025 ⏰</p>
+            <p class="countdown-title">⏰ Cuenta regresiva para San Valentín ⏰</p>
             <div class="countdown" id="countdown">
                 <div class="countdown-item">
                     <div class="countdown-number" id="days">00</div>
-                    <div class="countdown-label">Days</div>
+                    <div class="countdown-label">Días</div>
                 </div>
                 <div class="countdown-item">
                     <div class="countdown-number" id="hours">00</div>
-                    <div class="countdown-label">Hours</div>
+                    <div class="countdown-label">Horas</div>
                 </div>
                 <div class="countdown-item">
                     <div class="countdown-number" id="minutes">00</div>
-                    <div class="countdown-label">Minutes</div>
+                    <div class="countdown-label">Minutos</div>
                 </div>
                 <div class="countdown-item">
                     <div class="countdown-number" id="seconds">00</div>
-                    <div class="countdown-label">Seconds</div>
+                    <div class="countdown-label">Segundos</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Overlay for popups -->
+    <!-- Overlay -->
     <div class="overlay" id="overlay" onclick="closeLoveNote()"></div>
 
-    <!-- Love Note Popup -->
+    <!-- Popup razones -->
     <div class="love-note-popup" id="loveNotePopup">
         <div class="note-emoji" id="noteEmoji">💕</div>
-        <p class="note-number" id="noteNumber">Reason #1</p>
-        <p class="note-text" id="noteText">Loading...</p>
-        <button class="close-note-btn" onclick="closeLoveNote()">More Love! 💖</button>
+        <p class="note-number" id="noteNumber">Razón #1</p>
+        <p class="note-text" id="noteText">Cargando...</p>
+        <button class="close-note-btn" onclick="closeLoveNote()">Más amor 💖</button>
     </div>
 
-    <!-- Virtual Hug Animation - GIF VERSION -->
+    <!-- Abrazo virtual -->
     <div class="hug-animation" id="hugAnimation">
-        <!-- Floating hearts around the GIF -->
         <div class="hug-hearts">
             <span class="hug-heart">💕</span>
             <span class="hug-heart">💖</span>
@@ -180,18 +145,19 @@
             <span class="hug-heart">💝</span>
             <span class="hug-heart">🤗</span>
         </div>
-        <!-- Replace 'hug.gif' with your actual GIF filename -->
-        <img src="bear-hug2.webp" alt="Virtual Hug" class="hug-gif">
+        <img src="bear-hug2.webp" alt="Abrazo virtual" class="hug-gif">
     </div>
-    <div class="hug-message" id="hugMessage">Sending you the biggest virtual hug, Khushi! 🤗💖</div>
 
-    <!-- Background Music -->
+    <div class="hug-message" id="hugMessage">
+        ¡Te envío el abrazo más grande del mundo, Yeli! 🤗💖
+    </div>
+
+    <!-- Música -->
     <audio id="bgMusic" loop preload="metadata" crossorigin="anonymous">
         <source src="./Cupid.mp3" type="audio/mpeg">
         <source src="Cupid.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Music Control Button -->
     <button id="musicToggle" class="music-btn">🎵</button>
 
     <script src="celebrationscript.js"></script>
