@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     // =========================
-    // Crear elementos flotantes
+    // FONDO FLOTANTE
     // =========================
     function createFloatingItems() {
         const container = document.getElementById('heartsContainer');
         const items = ['💕','💖','💗','💓','💝','💘','❤️','🌸','🌺','✨','💫','🦋'];
         
+        if (!container) return;
+
         for (let i = 0; i < 25; i++) {
             const item = document.createElement('div');
             item.className = 'floating-item';
@@ -19,11 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // =========================
-    // Crear partículas
-    // =========================
     function createParticles() {
         const container = document.getElementById('heartsContainer');
+        if (!container) return;
         
         for (let i = 0; i < 40; i++) {
             const particle = document.createElement('div');
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // =========================
-    // Variables del botón No
+    // BOTÓN NO (HUYE)
     // =========================
     let runAwayCount = 0;
     let messageTimeout = null;
@@ -51,45 +51,33 @@ document.addEventListener("DOMContentLoaded", function () {
         "¡Ese botón se está haciendo el difícil! 🙈",
         "¡No puedes atraparlo, Yeli! 😄",
         "¡Está huyendo de ti! 💕",
-        "¡El botón No abandonó el chat! 😝",
         "¡Botón equivocado! ➡️ El Sí te espera",
         "Yeli, la resistencia es inútil 💘",
-        "Ese botón es muy tímido 🙊",
-        "Sigue intentando… o mejor presiona Sí 😉",
-        "🧸 ¡El osito quiere que digas Sí!",
-        "El osito te está juzgando 🧸😂",
         "¡Haz feliz al osito, Yeli! 🧸💖"
     ];
 
-    // =========================
-    // Función runAway (CORREGIDA)
-    // =========================
     window.runAway = function () {
 
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
         const hoverMessage = document.getElementById('hoverMessage');
 
-        // 🔥 SOLUCIÓN DEFINITIVA:
-        // Mover el botón al body UNA sola vez
+        if (!noBtn || !yesBtn) return;
+
+        // Mover al body una sola vez para evitar problemas de capas
         if (!noBtnMovedToBody) {
             document.body.appendChild(noBtn);
             noBtnMovedToBody = true;
-
             noBtn.style.position = 'fixed';
-            noBtn.style.zIndex = '2147483647'; // máximo posible
+            noBtn.style.zIndex = '2147483647';
         }
 
-        // Posición del botón Sí
         const yesRect = yesBtn.getBoundingClientRect();
         const centerX = yesRect.left + yesRect.width / 2;
         const centerY = yesRect.top + yesRect.height / 2;
 
-        const minRadius = 100;
-        const maxRadius = 180;
-
         const angle = Math.random() * Math.PI * 2;
-        const distance = minRadius + Math.random() * (maxRadius - minRadius);
+        const distance = 100 + Math.random() * 80;
 
         let newX = centerX + Math.cos(angle) * distance;
         let newY = centerY + Math.sin(angle) * distance;
@@ -108,77 +96,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
         runAwayCount++;
 
-        if (messageTimeout) clearTimeout(messageTimeout);
+        if (hoverMessage) {
+            if (messageTimeout) clearTimeout(messageTimeout);
 
-        hoverMessage.textContent = funnyMessages[runAwayCount % funnyMessages.length];
-        hoverMessage.classList.add('show');
+            hoverMessage.textContent = funnyMessages[runAwayCount % funnyMessages.length];
+            hoverMessage.classList.add('show');
 
-        messageTimeout = setTimeout(() => {
-            hoverMessage.classList.remove('show');
-        }, 4000);
+            messageTimeout = setTimeout(() => {
+                hoverMessage.classList.remove('show');
+            }, 3000);
+        }
 
-        // Hacer el Sí más atractivo
+        // Escalar botón Sí
         const scale = Math.min(1.25, 1 + runAwayCount * 0.025);
         yesBtn.style.transform = `scale(${scale})`;
 
-        if (runAwayCount > 3) {
-            yesBtn.style.boxShadow = `
-                0 10px 30px rgba(255,105,180,0.6),
-                0 0 ${15 + runAwayCount * 4}px rgba(255,105,180,0.5)
-            `;
+        // Evitar que desaparezca en móvil
+        if (runAwayCount > 10 && window.innerWidth > 768) {
+            noBtn.style.opacity = Math.max(0.7, 1 - (runAwayCount - 10) * 0.05);
         }
-
-        // Reducir el No
-        if (runAwayCount > 5) {
-            const fontSize = Math.max(0.85, 1 - runAwayCount * 0.02);
-            noBtn.style.fontSize = fontSize + 'rem';
-        }
-
-       // Reducir opacidad SOLO en escritorio
-if (runAwayCount > 10) {
-    noBtn.style.opacity = Math.max(0.4, 1 - (runAwayCount - 10) * 0.1);
-}
-
-
-
-        if (runAwayCount === 15) noBtn.textContent = "Está bien 😅";
-        if (runAwayCount === 20) noBtn.textContent = "Vale, vale 🏳️";
     };
 
     // =========================
-    // Botón Sí
+    // BOTÓN SÍ
     // =========================
     window.sayYes = function () {
 
-    // =========================
-    // GUARDAR ESTADO DE LA MÚSICA
-    // =========================
-    const music = document.getElementById("bgMusic");
+        createHeartBurst();
 
-    if (music) {
-        sessionStorage.setItem("musicTime", music.currentTime);
-        sessionStorage.setItem("musicWasPlaying", !music.paused);
-    }
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = "0";
 
-    createHeartBurst();
-
-    document.body.style.transition = 'all 0.5s ease';
-    document.body.style.background = 'radial-gradient(circle, #a855f7 0%, #0f0c29 100%)';
-
-    setTimeout(() => {
-        window.location.href = 'celebration.html';
-    }, 800);
-};
-
+        setTimeout(() => {
+            loadCelebration();
+        }, 600);
+    };
 
     // =========================
-    // Explosión de corazones
+    // EXPLOSIÓN DE CORAZONES
     // =========================
     function createHeartBurst() {
         const items = ['💕','💖','💗','💓','💝','💘','❤️','🧸','✨'];
         const yesBtn = document.getElementById('yesBtn');
-        const rect = yesBtn.getBoundingClientRect();
+        if (!yesBtn) return;
 
+        const rect = yesBtn.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
@@ -207,12 +169,40 @@ if (runAwayCount > 10) {
     }
 
     // =========================
-    // Inicializar
+    // CARGAR CELEBRATION SIN RECARGAR (SIN CORTAR MÚSICA)
+    // =========================
+    function loadCelebration() {
+
+        fetch("celebration.html")
+            .then(response => response.text())
+            .then(html => {
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, "text/html");
+
+                // Reemplazar contenido
+                document.body.innerHTML = doc.body.innerHTML;
+                document.body.style.opacity = "1";
+
+                // Ejecutar scripts de celebration
+                const scripts = doc.querySelectorAll("script");
+                scripts.forEach(oldScript => {
+                    if (oldScript.src) {
+                        const newScript = document.createElement("script");
+                        newScript.src = oldScript.src;
+                        document.body.appendChild(newScript);
+                    }
+                });
+
+            });
+    }
+
+    // =========================
+    // INICIALIZAR
     // =========================
     createFloatingItems();
     createParticles();
 
-    console.log('%c💕 ¡Una sorpresa especial para Yeli! 💕', 'font-size: 20px; color: #ff69b4;');
-    console.log('%c🧸 ¡El osito está animándote!', 'font-size: 14px; color: #a855f7;');
+    console.log('%c💕 Sorpresa preparada con amor para Yeli 💕', 'color:#ff69b4; font-size:16px;');
 
 });
