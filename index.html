@@ -1,92 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
     <title>💕 Una pregunta especial para Yeli 💕</title>
+    
     <!-- CSS externo -->
     <link rel="stylesheet" href="indexstyle.css">
 </head>
 <body>
-    <!-- Floating Items Background -->
+    <!-- Fondo con corazones flotantes -->
     <div class="hearts-container" id="heartsContainer"></div>
 
-    <!-- Small Decorative Elements -->
+    <!-- Elementos decorativos -->
     <div class="decoration deco-1">🌸</div>
     <div class="decoration deco-2">🌺</div>
     <div class="decoration deco-3">🌷</div>
     <div class="decoration deco-4">🌹</div>
 
-    <!-- Giant Teddy Bear Wrapper -->
+    <!-- Osito gigante -->
     <div class="teddy-wrapper">
         
-        <!-- Floating Hearts Above Teddy -->
+        <!-- Corazones flotando sobre el osito -->
         <div class="teddy-hearts">
             <span class="teddy-love">💕</span>
             <span class="teddy-love">💖</span>
             <span class="teddy-love">💗</span>
         </div>
 
-        <!-- Teddy Head (on top) -->
+        <!-- Cabeza del osito -->
         <div class="teddy-head">🧸</div>
 
-        <!-- Teddy Body Section -->
+        <!-- Cuerpo del osito -->
         <div class="teddy-body">
             
-            <!-- Blurred Teddy Torso Behind Card -->
+            <!-- Fondo del torso -->
             <div class="teddy-torso">🧸</div>
             
-            <!-- Left Paw -->
+            <!-- Patita izquierda -->
             <div class="teddy-paw-left">🐾</div>
 
-            <!-- Main Card (on teddy's torso) -->
+            <!-- Tarjeta principal -->
             <div class="card" id="mainCard">
                 <div class="big-heart">💖</div>
                 
-                <h1 class="title">Hey <span class="name-highlight">Khushi</span>! ✨</h1>
-                <p class="subtitle">I have something very special to ask you...</p>
+                <h1 class="title">Hola <span class="name-highlight">Yeli</span> 💖</h1>
+                <p class="subtitle">Tengo algo muy especial que preguntarte...</p>
                 
                 <h2 class="question">
-                    <span class="name-in-question">Khushi</span>, Will You Be My Valentine? 💕
+                    <span class="name-in-question">Yeli</span>, ¿quieres ser mi San Valentín? 💕
                 </h2>
                 
                 <div class="buttons-container" id="buttonsContainer">
-                    <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">Yes! 💖</button>
+                    <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">¡Sí! 💖</button>
                     <button class="btn btn-no" id="noBtn" onmouseover="runAway()" onclick="runAway()">No</button>
                 </div>
 
                 <div class="love-note">
-                    <p>Every love story is beautiful, but <span>ours is my favorite</span> 💕</p>
+                    <p>Cada historia de amor es hermosa, pero <span>la nuestra es mi favorita</span> 💕</p>
                 </div>
             </div>
 
-            <!-- Right Paw -->
+            <!-- Patita derecha -->
             <div class="teddy-paw-right">🐾</div>
         </div>
 
-        <!-- Teddy Feet (at bottom) -->
+        <!-- Patitas inferiores -->
         <div class="teddy-feet">
             <div class="teddy-foot teddy-foot-left">🐾</div>
             <div class="teddy-foot teddy-foot-right">🐾</div>
         </div>
     </div>
 
-    <!-- Hover Message -->
+    <!-- Mensaje al pasar por el botón No -->
     <div class="hover-message" id="hoverMessage">
-        Nope! That's not an option! 😜💕
+        ¡Nop! Esa no es una opción 😜💕
     </div>
 
     <script src="indexscript.js"></script> 
-    <!-- Background Music -->
+
+    <!-- Música de fondo -->
     <audio id="bgMusic" loop preload="auto">
         <source src="Where-Is-My-Husband.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Music Control Button -->
+    <!-- Botón de música -->
     <button id="musicToggle" class="music-btn">🎵</button>
 
     <link rel="stylesheet" href="indexmusicstyle.css">
-
     <script src="indexmusicscript.js"></script>
 </body>
 </html>
