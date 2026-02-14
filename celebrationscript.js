@@ -81,6 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const LOVE_STEP = 100 / loveReasons.length;
 
+       
+
     if (type === "jar") {
         openLoveNote();
         fillLoveMeter(LOVE_STEP); // 1 razón = 1 progreso
@@ -269,6 +271,18 @@ const messages = [
 
         burstConfetti();
     }
+}
+
+    // =========================
+// CLICK DIRECTO EN LA BARRA (25 clics)
+// =========================
+const loveMeterContainer = document.getElementById("loveMeterContainer");
+
+if (loveMeterContainer) {
+    loveMeterContainer.addEventListener("click", function () {
+        const LOVE_STEP = 100 / loveReasons.length;
+        fillLoveMeter(LOVE_STEP);
+    });
 }
 
 
