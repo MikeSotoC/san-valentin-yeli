@@ -77,12 +77,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Hacer global para HTML
-    window.handleInteraction = function (event, type) {
-         fillLoveMeter(25);
-        // Solo aumentar el amor en interacciones específicas
+   window.handleInteraction = function (event, type) {
+
+    const LOVE_STEP = 100 / loveReasons.length;
+
     if (type === "jar") {
         openLoveNote();
-        fillLoveMeter(100 / loveReasons.length); // sincronizado con las razones
+        fillLoveMeter(LOVE_STEP); // 1 razón = 1 progreso
         return;
     }
 
@@ -93,16 +94,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (type === "hug") {
         sendVirtualHug();
-        fillLoveMeter(5);
+        fillLoveMeter(LOVE_STEP / 2); // opcional: medio avance
         return;
     }
 
     if (type === "heart") {
         burstConfetti();
-        fillLoveMeter(3);
+        fillLoveMeter(LOVE_STEP / 3); // opcional: pequeño avance
         return;
     }
-    };
+};
+
 
     // =========================
     // FONDO FLOTANTE
