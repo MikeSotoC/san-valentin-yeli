@@ -105,18 +105,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // =========================
-    // LOVE JAR
+    // LOVE JAR (VERSIÓN PROFUNDA)
     // =========================
-    const loveReasons = [
-        { emoji: "😊", text: "Amo tu sonrisa, ilumina todo mi mundo." },
-        { emoji: "💭", text: "Siempre estás en mis pensamientos." },
-        { emoji: "🎵", text: "Tu risa es mi sonido favorito." },
-        { emoji: "🤗", text: "Contigo me siento en paz." },
-        { emoji: "✨", text: "Haces mágicos los momentos simples." },
-        { emoji: "🦋", text: "Aún me provocas mariposas." },
-        { emoji: "💕", text: "Te elegiría en cada vida." },
-        { emoji: "💖", text: "Te amo por ser tú, Yeli." }
-    ];
+const loveReasons = [
+    { emoji: "👀", text: "Amo tu mirada… porque a veces, sin decir una sola palabra, me dices todo lo que sientes." },
+    { emoji: "🤍", text: "Amo tus silencios, porque incluso cuando no hablas, tu presencia me da paz." },
+    { emoji: "😊", text: "Amo tu sonrisa… porque ilumina mis días incluso cuando todo parece difícil." },
+    { emoji: "😌", text: "Amo cuando te molestas un poquito… porque hasta en eso eres tú, real y sincera." },
+    { emoji: "😶‍🌫️", text: "Amo esos pequeños berrinches silenciosos… porque muestran tu forma tan única de sentir." },
+    { emoji: "🖤", text: "Amo incluso cuando eres fría… porque sé que detrás de eso hay un corazón enorme que siente profundamente." },
+    { emoji: "✨", text: "Amo cuando bajas la guardia y me dices cosas bonitas… esos momentos los guardo como tesoros." },
+    { emoji: "🦋", text: "Amo que seas orgullosa… porque también significa que eres fuerte y no te rindes fácilmente." },
+    { emoji: "🌙", text: "Amo tu forma de ser, incluso en tus cambios de ánimo, porque cada parte de ti es auténtica." },
+    { emoji: "💭", text: "Amo que estés en mi mente todo el día, sin esfuerzo, sin buscarlo." },
+    { emoji: "🌧️", text: "Amo que hayamos pasado por momentos difíciles… porque aun así, decidimos quedarnos y seguir intentándolo." },
+    { emoji: "🔥", text: "Amo que no nos rendimos fácilmente, porque lo nuestro es real y vale la pena." },
+    { emoji: "🤗", text: "Amo cómo, incluso en medio de todo, encontramos la forma de darnos paz." },
+    { emoji: "🏡", text: "Amo que contigo cualquier lugar se siente como hogar." },
+    { emoji: "🛡️", text: "Amo que contigo puedo ser yo mismo, sin miedo, sin máscaras." },
+    { emoji: "🌟", text: "Amo todo lo que estamos construyendo juntos, paso a paso, día a día." },
+    { emoji: "👩‍👦", text: "Amo a esa personita tan especial en tu vida… porque Alexander es una parte hermosa de ti." },
+    { emoji: "💙", text: "Amo poder quererlo, cuidarlo y verlo crecer… porque también se ha ganado un lugar en mi corazón." },
+    { emoji: "⏳", text: "Amo nuestro tiempo, nuestras historias y todos los momentos que aún nos esperan." },
+    { emoji: "💞", text: "Amo que lo nuestro no sea perfecto… porque es fuerte, sincero y verdadero." },
+    { emoji: "💗", text: "Amo que, a pesar de todo, seguimos aquí… eligiéndonos cada día." },
+    { emoji: "💖", text: "Amo todo de ti, Yeli… incluso las partes que el mundo no ve." },
+    { emoji: "❤️", text: "Y sobre todo… amo la vida que estamos formando juntos, contigo y con Alexander." }
+];
+
+
 
     let reasonIndex = 0;
 
@@ -169,12 +186,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let infinityMode = false;
 
     const messages = [
-        "¡Sigue tocando! 💕",
-        "¡El amor crece! 💖",
-        "¡Muchísimo amor! 💗",
-        "¡Casi al máximo! 💓",
-        "¡Amor infinito! 💝"
-    ];
+    "¡Sigue tocando! 💕",
+    "¡Esto apenas comienza! 💖",
+    "¡El amor va creciendo! 💗",
+    "¡Cada toque lo hace más fuerte! 💓",
+    "¡Cada vez más cariño! 💞",
+    "¡Nuestro amor sigue aumentando! 💘",
+    "¡Ya está lleno de sentimientos! 💝",
+    "¡Casi llegamos al máximo! 💟",
+    "¡Esto es amor de verdad! ❤️",
+    "¡Amor infinito, Yeli! 💖"
+];
+
 
     function fillLoveMeter(amount) {
         if (infinityMode) return;
