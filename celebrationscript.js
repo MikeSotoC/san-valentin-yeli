@@ -358,22 +358,40 @@ updateRelationshipTime();
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicToggle");
 
-if (music && musicBtn) {
+let playing = false;
 
-    // Detectar si ya estaba sonando
-    let playing = !music.paused;
-    musicBtn.classList.toggle("playing", playing);
+if (music) {
+    music.volume = 0.4;
 
+    const savedTime = sessionStorage.getItem("musicTime");
+    const wasPlaying = sessionStorage.getItem("musicWasPlaying");
+
+    if (savedTime !== null) {
+        music.currentTime = parseFloat(savedTime);
+    }
+
+    if (wasPlaying === "true") {
+        music.play().catch(() => {});
+        playing = true;
+    }
+
+    sessionStorage.removeItem("musicTime");
+    sessionStorage.removeItem("musicWasPlaying");
+}
+
+if (musicBtn && music) {
     musicBtn.addEventListener("click", function () {
-        if (music.paused) {
-            music.play().catch(() => {});
-            musicBtn.classList.add("playing");
-        } else {
+        if (playing) {
             music.pause();
             musicBtn.classList.remove("playing");
+        } else {
+            music.play().catch(() => {});
+            musicBtn.classList.add("playing");
         }
+        playing = !playing;
     });
 }
+
 
 
     // =========================
