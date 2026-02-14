@@ -140,6 +140,8 @@ window.sayYes = function () {
 };
 
 
+
+
     // =========================
     // EXPLOSIÓN DE CORAZONES
     // =========================
@@ -176,6 +178,35 @@ window.sayYes = function () {
         }
     }
 
+// =========================
+// EFECTO CLICK (corazones en el mouse)
+// =========================
+function createClickHeart(x, y) {
+    const hearts = ['💕','💖','💗','💓','💝'];
+
+    for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.className = 'click-heart';
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.position = 'fixed';
+            heart.style.left = (x - 10 + (Math.random() - 0.5) * 40) + 'px';
+            heart.style.top = (y - 10 + (Math.random() - 0.5) * 40) + 'px';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            heart.style.animation = 'pop-heart 1s ease-out forwards';
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 1000);
+        }, i * 80);
+    }
+}
+
+
+
 
 
 
@@ -186,5 +217,20 @@ window.sayYes = function () {
     createParticles();
 
     console.log('%c💕 Sorpresa preparada con amor para Yeli 💕', 'color:#ff69b4; font-size:16px;');
+	
+	// =========================
+// CLICK GLOBAL
+// =========================
+document.addEventListener('click', function(e) {
+
+    if (
+        e.target.closest('.btn') ||
+        e.target.closest('.music-btn')
+    ) {
+        return;
+    }
+
+    createClickHeart(e.clientX, e.clientY);
+});
 
 });
