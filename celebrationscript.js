@@ -130,9 +130,12 @@ const loveReasons = [
     { emoji: "💞", text: "Amo que lo nuestro no sea perfecto… porque es fuerte, sincero y verdadero." },
     { emoji: "💗", text: "Amo que, a pesar de todo, seguimos aquí… eligiéndonos cada día." },
     { emoji: "💖", text: "Amo todo de ti, Yeli… incluso las partes que el mundo no ve." },
-    { emoji: "❤️", text: "Y sobre todo… amo la vida que estamos formando juntos, contigo y con Alexander." }
-];
+    { emoji: "❤️", text: "Y sobre todo… amo la vida que estamos formando juntos, contigo y con Alexander." },
 
+    // NUEVAS
+    { emoji: "🌅", text: "Amo saber que cada día a tu lado es una nueva oportunidad para seguir construyendo nuestra historia." },
+    { emoji: "∞", text: "Y amo que, pase lo que pase, siempre quiero un futuro contigo, con Alexander… y con todo lo que somos juntos." }
+];
 
 
     let reasonIndex = 0;
@@ -185,18 +188,34 @@ const loveReasons = [
     let loveLevel = 0;
     let infinityMode = false;
 
-    const messages = [
+const messages = [
     "¡Sigue tocando! 💕",
-    "¡Esto apenas comienza! 💖",
-    "¡El amor va creciendo! 💗",
-    "¡Cada toque lo hace más fuerte! 💓",
-    "¡Cada vez más cariño! 💞",
-    "¡Nuestro amor sigue aumentando! 💘",
-    "¡Ya está lleno de sentimientos! 💝",
-    "¡Casi llegamos al máximo! 💟",
-    "¡Esto es amor de verdad! ❤️",
-    "¡Amor infinito, Yeli! 💖"
+    "Esto apenas comienza 💖",
+    "Pequeños toques, gran amor 💗",
+    "Cada vez crece más 💓",
+    "Nuestro cariño aumenta 💞",
+    "El amor se está acumulando 💘",
+    "Cada momento suma 💝",
+    "Se siente cada vez más fuerte 💟",
+    "Esto ya es especial ❤️",
+    "Cada vez más conexión 💕",
+    "Nuestros sentimientos crecen 💖",
+    "Esto ya es importante 💗",
+    "Hay algo muy real aquí 💓",
+    "Nuestro vínculo se fortalece 💞",
+    "Ya se siente profundo 💘",
+    "Esto ya es parte de nosotros 💝",
+    "Cada día más unidos 💟",
+    "Esto es amor de verdad ❤️",
+    "Ya no es solo bonito… es fuerte 💕",
+    "Esto significa mucho 💖",
+    "Nuestro lazo es especial 💗",
+    "Estamos construyendo algo grande 💓",
+    "Esto ya es para toda la vida 💞",
+    "Casi infinito… 💘",
+    "Amor infinito, Yeli ❤️"
 ];
+
 
 
     function fillLoveMeter(amount) {
