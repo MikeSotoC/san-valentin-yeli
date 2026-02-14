@@ -229,24 +229,27 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
     // TIEMPO JUNTOS (28/03/2025)
     // =========================
-    function updateRelationshipTime() {
-        const startDate = new Date("March 28, 2025 00:00:00").getTime();
-        const now = new Date().getTime();
-        const diff = now - startDate;
+   function updateRelationshipTime() {
+    const startDate = new Date("March 28, 2025 00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = now - startDate;
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
+    if (diff < 0) return;
 
-        const d = document.getElementById("relDays");
-        if (!d) return;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.getElementById("relDays").textContent = days;
-        document.getElementById("relHours").textContent = hours;
-        document.getElementById("relMinutes").textContent = minutes;
-        document.getElementById("relSeconds").textContent = seconds;
-    }
+    document.getElementById("relDays").textContent = days;
+    document.getElementById("relHours").textContent = hours;
+    document.getElementById("relMinutes").textContent = minutes;
+    document.getElementById("relSeconds").textContent = seconds;
+}
+
+setInterval(updateRelationshipTime, 1000);
+updateRelationshipTime();
+
 
     // =========================
     // MÚSICA
