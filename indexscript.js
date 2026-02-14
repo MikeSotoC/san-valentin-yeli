@@ -122,22 +122,38 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
 window.sayYes = function () {
 
-    const music = document.getElementById("bgMusic");
-
-    // Guardar estado de la música
-    if (music) {
-        sessionStorage.setItem("musicTime", music.currentTime);
-        sessionStorage.setItem("musicWasPlaying", !music.paused);
-    }
-
     createHeartBurst();
 
-    document.body.style.transition = "opacity 0.4s";
-    document.body.style.opacity = "0";
+    const indexPage = document.getElementById("pageIndex");
+    const celebrationPage = document.getElementById("pageCelebration");
+
+    // Ocultar index
+    indexPage.style.transition = "opacity 0.5s";
+    indexPage.style.opacity = "0";
 
     setTimeout(() => {
-        window.location.href = "celebration.html";
-    }, 400);
+
+        indexPage.style.display = "none";
+
+        // Cargar celebration dentro del div
+        fetch("celebration.html")
+            .then(res => res.text())
+            .then(html => {
+
+                // Extraer SOLO el body
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, "text/html");
+
+                celebrationPage.innerHTML = doc.body.innerHTML;
+                celebrationPage.style.display = "block";
+
+                // Cargar el script manualmente
+                const script = document.createElement("script");
+                script.src = "celebrationscript.js";
+                document.body.appendChild(script);
+            });
+
+    }, 500);
 };
 
 
