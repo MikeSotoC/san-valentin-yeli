@@ -464,8 +464,8 @@
 
             if (distance < 0) {
                 document.getElementById('countdownSection').innerHTML = `
-                    <p class="countdown-title" style="color: #ff69b4; font-size: 1.5rem;">🎉 Happy Valentine's Day, Khushi! 🎉</p>
-                    <p style="color: #e0e0e0; font-size: 1.2rem; margin-top: 10px;">Today is OUR special day! 💕</p>
+                <p class="countdown-title" style="color: #ff69b4; font-size: 1.5rem;">🎉 ¡Feliz San Valentín, Yeli! 🎉</p>
+                <p style="color: #e0e0e0; font-size: 1.2rem; margin-top: 10px;">Hoy es nuestro día especial 💕</p>
                 `;
                 return;
             }
@@ -621,28 +621,29 @@
         init();
 
         // ========== CONSOLE EASTER EGGS ==========
-        console.log('%c💕 Made with infinite love for Khushi! 💕', 
-            'font-size: 24px; color: #ff69b4; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
-        console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 
-            'color: #a855f7;');
-        console.log('%c🎹 Secret Keyboard Shortcuts:', 
-            'font-size: 14px; color: #ffd700; font-weight: bold;');
-        console.log('%c   L = Love confetti burst', 
-            'font-size: 12px; color: #ff69b4;');
-        console.log('%c   H = Send virtual hug (GIF)', 
-            'font-size: 12px; color: #ff69b4;');
-        console.log('%c   K = Khushi special! 💖', 
-            'font-size: 12px; color: #ff69b4;');
-        console.log('%c   I = Instant infinity mode', 
-            'font-size: 12px; color: #ff69b4;');
-        console.log('%c   J = Open love jar', 
-            'font-size: 12px; color: #ff69b4;');
-        console.log('%c   C = More confetti!', 
-            'font-size: 12px; color: #ff69b4;');
-        console.log('%c   G = GIF hug animation', 
-            'font-size: 12px; color: #ff69b4;');
-        console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 
-            'color: #a855f7;');
+       console.log('%c💕 Hecho con amor infinito para Yeli 💕', 
+                   'font-size: 24px; color: #ff69b4; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
+       console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 
+                   'color: #a855f7;');
+       console.log('%c🎹 Atajos secretos:',
+                   'font-size: 14px; color: #ffd700; font-weight: bold;');
+       console.log('%c   L = Explosión de amor',
+                   'font-size: 12px; color: #ff69b4;');
+       console.log('%c   H = Enviar abrazo virtual',
+                   'font-size: 12px; color: #ff69b4;');
+       console.log('%c   K = Modo especial para Yeli 💖',
+                   'font-size: 12px; color: #ff69b4;');
+       console.log('%c   I = Amor infinito instantáneo',
+                   'font-size: 12px; color: #ff69b4;');
+       console.log('%c   J = Abrir frasco de amor',
+                   'font-size: 12px; color: #ff69b4;');
+       console.log('%c   C = Más confeti',
+                   'font-size: 12px; color: #ff69b4;');
+       console.log('%c   G = Abrazo con animación',
+                   'font-size: 12px; color: #ff69b4;');
+       console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+                   'color: #a855f7;');
+
     </script>
 
     <!-- ========== MUSIC CONTROLLER ========== -->
