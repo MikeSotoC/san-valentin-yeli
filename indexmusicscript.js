@@ -1,137 +1,151 @@
- // ========== MUSIC CONTROLLER ==========
-        const music = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicToggle');
-        let isMusicPlaying = false;
-        let hasMusicInteracted = false;
+document.addEventListener("DOMContentLoaded", function () {
 
-        // Music settings
-        music.volume = 0.4;
-        const startTime = 11; // Start from 10 seconds
+    // =========================
+    // ELEMENTOS
+    // =========================
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicToggle");
 
-        // Create visualizer bars
-        const barsContainer = document.createElement('div');
-        barsContainer.className = 'music-bars';
+    if (!music || !musicBtn) return;
+
+    // =========================
+    // CONFIGURACIÓN
+    // =========================
+    const START_TIME = 11;   // segundo inicial
+    const VOLUME = 0.4;
+
+    let isPlaying = false;
+    let userInteracted = false;
+
+    music.volume = VOLUME;
+    music.loop = false; // controlaremos el loop manualmente
+
+    // =========================
+    // VISUALIZADOR
+    // =========================
+    function createBars() {
+        const container = document.createElement("div");
+        container.className = "music-bars";
+
         for (let i = 0; i < 4; i++) {
-            const bar = document.createElement('div');
-            bar.className = 'music-bar';
-            barsContainer.appendChild(bar);
+            const bar = document.createElement("div");
+            bar.className = "music-bar";
+            container.appendChild(bar);
         }
-        musicBtn.innerHTML = '';
-        musicBtn.appendChild(document.createTextNode('🎵'));
+        return container;
+    }
 
-        // Function to start music
-        function startMusic() {
-            music.currentTime = startTime;
-            music.play().then(() => {
-                isMusicPlaying = true;
-                hasMusicInteracted = true;
-                updateMusicButton();
-            }).catch(err => {
-                console.log('Music play failed:', err);
-            });
+    function updateButton() {
+        musicBtn.innerHTML = "";
+
+        if (isPlaying) {
+            musicBtn.appendChild(createBars());
+            musicBtn.classList.add("playing");
+        } else {
+            musicBtn.textContent = "🎵";
+            musicBtn.classList.remove("playing");
         }
+    }
 
-        // Function to update button appearance
-        function updateMusicButton() {
-            if (isMusicPlaying) {
-                musicBtn.innerHTML = '';
-                musicBtn.appendChild(barsContainer.cloneNode(true));
-                musicBtn.classList.add('playing');
-            } else {
-                musicBtn.innerHTML = '🎵';
-                musicBtn.classList.remove('playing');
-            }
-        }
+    // =========================
+    // REPRODUCIR DESDE SEGUNDO
+    // =========================
+    function playMusic() {
+        music.currentTime = START_TIME;
 
-        // Toggle music function
-        function toggleMusic(e) {
-            e.stopPropagation();
-            
-            if (!hasMusicInteracted) {
-                startMusic();
-                return;
-            }
-
-            if (isMusicPlaying) {
-                music.pause();
-                isMusicPlaying = false;
-            } else {
-                music.currentTime = startTime;
-                music.play();
-                isMusicPlaying = true;
-            }
-            updateMusicButton();
-        }
-
-        // Button click handler
-        musicBtn.addEventListener('click', toggleMusic);
-
-        // All possible interaction events for autoplay
-        const interactionEvents = [
-            'click',
-            'touchstart',
-            'mousemove',
-            'scroll',
-            'keydown'
-        ];
-
-        // Handler for first interaction
-        function onFirstInteraction(e) {
-            if (hasMusicInteracted) return;
-            if (e.target.id === 'musicToggle') return; // Let button handle itself
-            
-            startMusic();
-            removeInteractionListeners();
-        }
-
-        // Add interaction listeners
-        function addInteractionListeners() {
-            interactionEvents.forEach(event => {
-                document.addEventListener(event, onFirstInteraction, { passive: true });
-            });
-        }
-
-        // Remove interaction listeners
-        function removeInteractionListeners() {
-            interactionEvents.forEach(event => {
-                document.removeEventListener(event, onFirstInteraction);
-            });
-        }
-
-        // Try autoplay first
-        music.currentTime = startTime;
         music.play().then(() => {
-            isMusicPlaying = true;
-            hasMusicInteracted = true;
-            updateMusicButton();
-            removeInteractionListeners();
+            isPlaying = true;
+            userInteracted = true;
+            updateButton();
         }).catch(() => {
-            // Autoplay blocked - add listeners for first interaction
-            console.log('🎵 Waiting for interaction to play music...');
-            addInteractionListeners();
+            // Autoplay bloqueado
+            waitForFirstInteraction();
         });
+    }
 
-        // Handle page visibility (pause when tab hidden)
-        document.addEventListener('visibilitychange', () => {
-            if (!hasMusicInteracted) return;
-            
-            if (document.hidden && isMusicPlaying) {
-                music.pause();
-            } else if (!document.hidden && isMusicPlaying) {
-                music.play();
-            }
+    function pauseMusic() {
+        music.pause();
+        isPlaying = false;
+        updateButton();
+    }
+
+    function toggleMusic(e) {
+        e.stopPropagation();
+        userInteracted = true;
+
+        if (isPlaying) {
+            pauseMusic();
+        } else {
+            playMusic();
+        }
+    }
+
+    musicBtn.addEventListener("click", toggleMusic);
+
+    // =========================
+    // AUTOPLAY INTENTO
+    // =========================
+    function tryAutoplay() {
+        music.currentTime = START_TIME;
+
+        music.play().then(() => {
+            isPlaying = true;
+            userInteracted = true;
+            updateButton();
+        }).catch(() => {
+            // Navegador lo bloqueó
+            waitForFirstInteraction();
         });
+    }
 
-        // When song loops, restart from 9 seconds
-        music.addEventListener('ended', () => {
-            music.currentTime = startTime;
+    // =========================
+    // PRIMER TOQUE (MÓVIL)
+    // =========================
+    function waitForFirstInteraction() {
+
+        function firstInteraction() {
+            if (userInteracted) return;
+
+            userInteracted = true;
+            playMusic();
+
+            document.removeEventListener("click", firstInteraction);
+            document.removeEventListener("touchstart", firstInteraction);
+        }
+
+        document.addEventListener("click", firstInteraction, { passive: true });
+        document.addEventListener("touchstart", firstInteraction, { passive: true });
+    }
+
+    // =========================
+    // LOOP DESDE EL SEGUNDO 11
+    // =========================
+    music.addEventListener("timeupdate", () => {
+        if (!music.duration) return;
+
+        // Si faltan menos de 0.3s para terminar
+        if (music.duration - music.currentTime < 0.3) {
+            music.currentTime = START_TIME;
             music.play();
-        });
+        }
+    });
 
-        // Double-check loop reset (in case 'ended' doesn't fire with loop)
-        music.addEventListener('timeupdate', () => {
-            // If near the end, go back to start time
-            if (music.duration - music.currentTime < 0.5) {
-                music.currentTime = startTime;
-            }
-        });
+    // =========================
+    // PAUSAR SI CAMBIA DE PESTAÑA
+    // =========================
+    document.addEventListener("visibilitychange", () => {
+        if (!userInteracted) return;
+
+        if (document.hidden) {
+            music.pause();
+        } else if (isPlaying) {
+            music.play();
+        }
+    });
+
+    // =========================
+    // INICIAR
+    // =========================
+    tryAutoplay();
+
+});
