@@ -273,17 +273,20 @@ const messages = [
     }
 }
 
-    // =========================
-// CLICK DIRECTO EN LA BARRA (25 clics)
+// =========================
+// CLICK EN LA BARRA (25 pasos + confetti)
 // =========================
 const loveMeterContainer = document.getElementById("loveMeterContainer");
 
 if (loveMeterContainer) {
     loveMeterContainer.addEventListener("click", function () {
         const LOVE_STEP = 100 / loveReasons.length;
+
         fillLoveMeter(LOVE_STEP);
+        burstConfetti(); // ← ahora sí lanza confetti
     });
 }
+
 
 
     // =========================
