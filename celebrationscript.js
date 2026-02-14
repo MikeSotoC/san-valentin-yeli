@@ -355,22 +355,49 @@ updateRelationshipTime();
     // =========================
     // MÚSICA
     // =========================
-    const music = document.getElementById("bgMusic");
-    const musicBtn = document.getElementById("musicToggle");
+    // =========================
+// MÚSICA (CONTINUAR DESDE INDEX)
+// =========================
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicToggle");
 
-    let playing = false;
+let playing = false;
+
+if (music) {
     music.volume = 0.4;
 
+    // Recuperar estado guardado
+    const savedTime = sessionStorage.getItem("musicTime");
+    const wasPlaying = sessionStorage.getItem("musicWasPlaying");
+
+    if (savedTime !== null) {
+        music.currentTime = parseFloat(savedTime);
+    }
+
+    if (wasPlaying === "true") {
+        music.play().catch(() => {});
+        playing = true;
+    }
+
+    // Limpiar para la próxima navegación
+    sessionStorage.removeItem("musicTime");
+    sessionStorage.removeItem("musicWasPlaying");
+}
+
+// Botón de música
+if (musicBtn && music) {
     musicBtn.addEventListener("click", function () {
         if (playing) {
             music.pause();
             musicBtn.classList.remove("playing");
         } else {
-            music.play();
+            music.play().catch(() => {});
             musicBtn.classList.add("playing");
         }
         playing = !playing;
     });
+}
+
 
     // =========================
     // INICIALIZACIÓN
