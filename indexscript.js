@@ -124,23 +124,20 @@ window.sayYes = function () {
 
     const music = document.getElementById("bgMusic");
 
+    // Guardar estado de música
     if (music) {
         sessionStorage.setItem("musicTime", music.currentTime);
         sessionStorage.setItem("musicWasPlaying", !music.paused);
     }
 
-    createHeartBurst();
-
-    document.body.style.transition = "all 0.5s ease";
-    document.body.style.background = "radial-gradient(circle, #a855f7 0%, #0f0c29 100%)";
+    // Efecto visual opcional
+    document.body.style.transition = "opacity 0.5s";
+    document.body.style.opacity = "0";
 
     setTimeout(() => {
         window.location.href = "celebration.html";
-    }, 800);
+    }, 500);
 };
-
-
-
 
 
     // =========================
