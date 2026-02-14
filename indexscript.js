@@ -120,17 +120,26 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
     // BOTÓN SÍ
     // =========================
-    window.sayYes = function () {
+window.sayYes = function () {
 
-        createHeartBurst();
+    const music = document.getElementById("bgMusic");
 
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = "0";
+    // Guardar estado de la música
+    if (music) {
+        sessionStorage.setItem("musicTime", music.currentTime);
+        sessionStorage.setItem("musicWasPlaying", !music.paused);
+    }
 
-        setTimeout(() => {
-            loadCelebration();
-        }, 600);
-    };
+    createHeartBurst();
+
+    document.body.style.transition = "opacity 0.5s";
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+        window.location.href = "celebration.html";
+    }, 500);
+};
+
 
     // =========================
     // EXPLOSIÓN DE CORAZONES
