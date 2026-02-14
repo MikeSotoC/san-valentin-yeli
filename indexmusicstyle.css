@@ -22,7 +22,6 @@
     justify-content: center;
     align-items: center;
 
-    /* Mejora para móviles */
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
 }
@@ -35,13 +34,11 @@
     }
 }
 
-/* Cuando está reproduciendo */
 .music-btn.playing {
     animation: none;
     background: linear-gradient(135deg, #a855f7, #667eea);
 }
 
-/* Onda de sonido */
 .music-btn.playing::after {
     content: '';
     position: absolute;
@@ -52,9 +49,6 @@
     animation: music-wave 1.5s ease-out infinite;
 }
 
-/* =========================
-   ANIMACIONES
-========================= */
 @keyframes pulse-music {
     0%, 100% { 
         box-shadow: 0 5px 25px rgba(255,105,180,0.5);
@@ -67,49 +61,12 @@
 }
 
 @keyframes music-wave {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1.8);
-        opacity: 0;
-    }
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.8); opacity: 0; }
 }
 
 /* =========================
-   BARRAS DE AUDIO
-========================= */
-.music-btn.playing .music-bars {
-    display: flex;
-}
-
-.music-bars {
-    display: none;
-    gap: 2px;
-    height: 20px;
-    align-items: flex-end;
-}
-
-.music-bar {
-    width: 3px;
-    background: white;
-    border-radius: 2px;
-    animation: bar-dance 0.5s ease-in-out infinite;
-}
-
-.music-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
-.music-bar:nth-child(2) { height: 16px; animation-delay: 0.1s; }
-.music-bar:nth-child(3) { height: 12px; animation-delay: 0.2s; }
-.music-bar:nth-child(4) { height: 18px; animation-delay: 0.3s; }
-
-@keyframes bar-dance {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.5); }
-}
-
-/* =========================
-   MODO CELULAR
+   MÓVIL
 ========================= */
 @media (max-width: 768px) {
 
@@ -117,26 +74,11 @@
         width: 70px;
         height: 70px;
         font-size: 26px;
-
         bottom: 15px;
         right: 15px;
-
-        /* Área de toque más cómoda */
-        box-shadow: 0 6px 30px rgba(255,105,180,0.6);
-    }
-
-    .music-bars {
-        height: 24px;
-    }
-
-    .music-bar {
-        width: 4px;
     }
 }
 
-/* =========================
-   CELULARES MUY PEQUEÑOS
-========================= */
 @media (max-width: 400px) {
     .music-btn {
         width: 65px;
