@@ -17,18 +17,30 @@ document.addEventListener("DOMContentLoaded", function () {
 const envelope = document.getElementById("loveEnvelope");
 
 if (envelope) {
-    envelope.addEventListener("click", function () {
+    envelope.addEventListener("click", function (event) {
+
+        createClickHeart(event.clientX, event.clientY);
 
         // animación de apertura
         envelope.classList.add("open");
 
-        // mostrar mensaje después
+        // Progreso del amor
+        const LOVE_STEP = 100 / loveReasons.length;
+        fillLoveMeter(LOVE_STEP);
+
+        // Mostrar mensaje rápido
         setTimeout(() => {
             openLoveNote();
-        }, 500);
+        }, 250);
+
+        // Cerrar animación del sobre
+        setTimeout(() => {
+            envelope.classList.remove("open");
+        }, 700);
 
     });
 }
+
 
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
@@ -435,53 +447,60 @@ setInterval(updateRelationshipTime, 1000);
 updateRelationshipTime();
 
 // =========================
-// MÚSICA (CONTINUAR DESDE INDEX)
+// MÚSICA (VERSIÓN CORREGIDA)
 // =========================
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicToggle");
 
 let playing = false;
 
-if (music) {
+if (music && musicBtn) {
 
     music.volume = 0.4;
 
-    // Recuperar estado
+    // Restaurar estado desde index
     const savedTime = sessionStorage.getItem("musicTime");
     const wasPlaying = sessionStorage.getItem("musicWasPlaying");
 
-    // Esperar a que el audio cargue
-    music.addEventListener("loadedmetadata", function () {
+    if (savedTime !== null) {
+        music.currentTime = parseFloat(savedTime);
+    }
 
-        if (savedTime !== null) {
-            music.currentTime = parseFloat(savedTime);
-        }
-
-        if (wasPlaying === "true") {
-            music.play().catch(() => {});
+    if (wasPlaying === "true") {
+        music.play().then(() => {
             playing = true;
-            if (musicBtn) musicBtn.classList.add("playing");
-        }
-
-        // Limpiar memoria
-        sessionStorage.removeItem("musicTime");
-        sessionStorage.removeItem("musicWasPlaying");
-    });
-}
-
-// Botón música
-if (musicBtn && music) {
-    musicBtn.addEventListener("click", function () {
-        if (playing) {
-            music.pause();
-            musicBtn.classList.remove("playing");
-        } else {
-            music.play().catch(() => {});
             musicBtn.classList.add("playing");
+        }).catch(() => {
+            // El navegador puede bloquear autoplay
+            playing = false;
+        });
+    }
+
+    // Botón de música
+    musicBtn.addEventListener("click", function () {
+
+        if (!playing) {
+            music.play().then(() => {
+                playing = true;
+                musicBtn.classList.add("playing");
+            }).catch(err => {
+                console.log("Autoplay bloqueado:", err);
+            });
+        } else {
+            music.pause();
+            playing = false;
+            musicBtn.classList.remove("playing");
         }
-        playing = !playing;
+
+    });
+
+    // Guardar estado al salir de la página
+    window.addEventListener("beforeunload", function () {
+        sessionStorage.setItem("musicTime", music.currentTime);
+        sessionStorage.setItem("musicWasPlaying", playing);
     });
 }
+
 
 
 
