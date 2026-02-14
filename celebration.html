@@ -1,187 +1,57 @@
+<!-- Confetti Canvas -->
+<canvas id="confettiCanvas"></canvas>
 
-    <!-- Confetti Canvas -->
-    <canvas id="confettiCanvas"></canvas>
+<!-- Fondo flotante -->
+<div class="floating-bg" id="floatingBg"></div>
 
-    <!-- Fondo flotante -->
-    <div class="floating-bg" id="floatingBg"></div>
+<!-- Elementos decorativos -->
+<div class="decoration deco-1">🧸</div>
+<div class="decoration deco-2">🌸</div>
+<div class="decoration deco-3">💐</div>
+<div class="decoration deco-4">🧸</div>
+<div class="decoration deco-5">🌺</div>
+<div class="decoration deco-6">🌷</div>
 
-    <!-- Elementos decorativos -->
-    <div class="decoration deco-1">🧸</div>
-    <div class="decoration deco-2">🌸</div>
-    <div class="decoration deco-3">💐</div>
-    <div class="decoration deco-4">🧸</div>
-    <div class="decoration deco-5">🌺</div>
-    <div class="decoration deco-6">🌷</div>
+<!-- Contenido principal -->
+<div class="celebration-container">
 
-    <!-- Contenido principal -->
-    <div class="celebration-container">
-        <div class="mega-heart" id="megaHeart" onclick="handleInteraction(event, 'heart')">💖</div>
-        
-        <div class="main-message">
-            <h1 class="yay-text">
-                ¡Feliz San Valentín! 🎉
-                <span class="name-celebrate">Nuestro primer San Valentín juntos, Yeli 💖</span>
-            </h1>
-            <p class="sub-message">Gracias por hacer mi vida más feliz cada día 💕</p>
-        </div>
-
-        <div class="love-card">
-            <span class="corner-deco corner-tl">🦋</span>
-            <span class="corner-deco corner-tr">🦋</span>
-            <span class="corner-deco corner-bl">✨</span>
-            <span class="corner-deco corner-br">✨</span>
-            
-            <h2 class="love-title">💌 Para mi Amorcito Yeli 💌</h2>
-            
-           <div class="love-text">
-    <p>Si algo he aprendido contigo, es que el amor verdadero no es perfecto… es valiente. Porque lo nuestro no ha sido un camino fácil, y aun así, aquí estamos.</p>
-
-    <p>Hemos vivido momentos hermosos, de risas, cariño y paz… pero también momentos difíciles, de dudas, silencios, distancia y cansancio. Y aunque hubo días en los que todo parecía complicado, nunca dejamos de intentarlo. Nunca dejamos de luchar por nosotros.</p>
-
-    <p>Y eso es lo que hace que lo nuestro sea tan especial.</p>
-
-    <p>Porque el amor real no es el que solo está cuando todo es bonito… el amor real es el que se queda, el que tiene paciencia, el que aprende, el que perdona, el que entiende… el que no se rinde cuando las cosas se ponen difíciles.</p>
-
-    <p>Contigo he aprendido que amar es elegir. Elegir quedarme. Elegir comprender. Elegir crecer. Elegir seguir caminando juntos, incluso cuando el camino no es perfecto.</p>
-
-    <p>Hemos cambiado, hemos aprendido, hemos cometido errores, pero también hemos crecido… y cada obstáculo que superamos hizo nuestro vínculo más fuerte, más sincero y más real.</p>
-
-    <p>Este es nuestro <span class="highlight">primer San Valentín juntos</span>, y para mí significa mucho más que una fecha. Es un recordatorio de todo lo que hemos construido, de todo lo que hemos superado y de lo fuerte que es lo nuestro.</p>
-
-    <p>Gracias por tu paciencia. Gracias por tu cariño. Gracias por tu esfuerzo. Gracias por quedarte, incluso en los días difíciles. Gracias por no rendirte con nosotros.</p>
-
-    <p>Porque si algo tengo claro, es que no quiero un amor perfecto… te quiero a ti. Con tus virtudes, tus miedos, tus sueños y tu forma única de ser.</p>
-
-    <p>Quiero seguir creciendo contigo. Quiero seguir aprendiendo contigo. Quiero seguir construyendo esta historia, paso a paso, día a día, momento a momento.</p>
-
-    <p>Y si el amor es elegir a alguien una y otra vez… entonces yo te elijo. Hoy, mañana y en cada día que venga.</p>
-
-    <p class="signature">
-        En los días buenos, en los días difíciles y en todos los que aún nos esperan ❤️<br>
-        Siempre contigo,<br>
-        Tu Piuchi
-    </p>
-</div>
-
-        </div>
-
-        <!-- Botones interactivos -->
-        <div class="buttons-row">
-            <button class="action-btn" onclick="handleInteraction(event, 'confetti')">🎉 ¡Más confeti!</button>
-            <button class="action-btn secondary" onclick="handleInteraction(event, 'hug')">🤗 ¡Enviar abrazo!</button>
-        </div>
-
-        <!-- Love Jar -->
-        <div class="love-jar-section">
-            <h3 class="love-jar-title">🏺 Toca el frasco para descubrir todas las razones por las que te amo 🏺</h3>
-            <div class="love-jar-container">
-                <div class="love-jar" onclick="handleInteraction(event, 'jar')">🏺</div>
-            </div>
-            <p class="jar-hint">Cada toque revela una razón y llena el medidor de amor 💕</p>
-        </div>
-
-        <!-- Medidor de amor -->
-        <div class="love-meter-section">
-            <p class="love-meter-title">💕 Nuestro medidor de amor 💕</p>
-            
-            <div class="love-meter-wrapper">
-               <div class="love-meter-container" id="loveMeterContainer">
-                    <div class="love-meter-fill" id="loveMeterFill"></div>
-                </div>
-
-                <!-- Infinito -->
-                <div class="infinity-container" id="infinityContainer">
-                    <span class="infinity-sparkle">✨</span>
-                    <span class="infinity-sparkle">💖</span>
-                    <span class="infinity-sparkle">✨</span>
-                    <span class="infinity-sparkle">💖</span>
-                    
-                    <div class="infinity-svg-wrapper">
-                        <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-                            <path class="infinity-path infinity-path-bg" 
-                                d="M100,40 C100,40 130,10 160,10 C190,10 190,70 160,70 C130,70 100,40 100,40 C100,40 70,10 40,10 C10,10 10,70 40,70 C70,70 100,40 100,40"/>
-                            
-                            <path class="infinity-path infinity-path-fill" 
-                                d="M100,40 C100,40 130,10 160,10 C190,10 190,70 160,70 C130,70 100,40 100,40 C100,40 70,10 40,10 C10,10 10,70 40,70 C70,70 100,40 100,40"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            
-            <p class="love-meter-text" id="loveMeterText">Toca para llenarlo de amor</p>
-        </div>
-
-        <!-- Cuenta regresiva -->
-        <div class="countdown-section" id="countdownSection">
-            <p class="countdown-title">⏰ Cuenta regresiva para San Valentín ⏰</p>
-            <div class="countdown" id="countdown">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">00</div>
-                    <div class="countdown-label">Días</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">00</div>
-                    <div class="countdown-label">Horas</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">00</div>
-                    <div class="countdown-label">Minutos</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">00</div>
-                    <div class="countdown-label">Segundos</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-   <!-- Tiempo juntos -->
-<div class="countdown-section relationship-section">
-    <p class="countdown-title">💑 Tiempo de nuestro amor desde el 28/03/2025 💑</p>
-    <div class="countdown">
-        <div class="countdown-item">
-            <div class="countdown-number" id="relDays">0</div>
-            <div class="countdown-label">Días</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="relHours">0</div>
-            <div class="countdown-label">Horas</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="relMinutes">0</div>
-            <div class="countdown-label">Minutos</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="relSeconds">0</div>
-            <div class="countdown-label">Segundos</div>
-        </div>
-    </div>
-</div>
+    <div class="mega-heart" onclick="handleInteraction(event, 'heart')">💖</div>
     
-    <!-- Overlay -->
-    <div class="overlay" id="overlay" onclick="closeLoveNote()"></div>
-
-    <!-- Popup razones -->
-    <div class="love-note-popup" id="loveNotePopup">
-        <div class="note-emoji" id="noteEmoji">💕</div>
-        <p class="note-number" id="noteNumber">Razón #1</p>
-        <p class="note-text" id="noteText">Cargando...</p>
-        <button class="close-note-btn" onclick="closeLoveNote()">Más amor 💖</button>
+    <div class="main-message">
+        <h1 class="yay-text">
+            ¡Feliz San Valentín! 🎉
+            <span class="name-celebrate">
+                Nuestro primer San Valentín juntos, Yeli 💖
+            </span>
+        </h1>
+        <p class="sub-message">
+            Gracias por hacer mi vida más feliz cada día 💕
+        </p>
     </div>
 
-    <!-- Abrazo virtual -->
-    <div class="hug-animation" id="hugAnimation">
-        <div class="hug-hearts">
-            <span class="hug-heart">💕</span>
-            <span class="hug-heart">💖</span>
-            <span class="hug-heart">💗</span>
-            <span class="hug-heart">💓</span>
-            <span class="hug-heart">💝</span>
-            <span class="hug-heart">🤗</span>
+    <div class="love-card">
+        <h2 class="love-title">💌 Para mi Amorcito Yeli 💌</h2>
+
+        <div class="love-text">
+            <p>Si algo he aprendido contigo, es que el amor verdadero no es perfecto… es valiente.</p>
+            <p>Porque el amor real es el que se queda, el que no se rinde cuando las cosas se ponen difíciles.</p>
+            <p>Y si el amor es elegir a alguien una y otra vez… entonces yo te elijo.</p>
+
+            <p class="signature">
+                Siempre contigo,<br>
+                Tu Piuchi ❤️
+            </p>
         </div>
-        <img id="hugGif" src="abrazo1.webp" alt="Abrazo virtual" class="hug-gif">
     </div>
 
-    <div class="hug-message" id="hugMessage">
-        ¡Te envío el abrazo más grande del mundo, Yeli! 🤗💖
+    <!-- Botones -->
+    <div class="buttons-row">
+        <button class="action-btn" onclick="handleInteraction(event, 'confetti')">
+            🎉 ¡Más confeti!
+        </button>
+        <button class="action-btn secondary" onclick="handleInteraction(event, 'hug')">
+            🤗 ¡Enviar abrazo!
+        </button>
     </div>
+
+</div>
