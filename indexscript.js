@@ -122,13 +122,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
 window.sayYes = function () {
 
+    const music = document.getElementById("bgMusic");
+
+    if (music) {
+        sessionStorage.setItem("musicTime", music.currentTime);
+        sessionStorage.setItem("musicWasPlaying", !music.paused);
+    }
+
     createHeartBurst();
 
-    const app = document.getElementById("app");
-    app.style.transition = "opacity 0.6s ease";
-    app.style.opacity = "0";
+    document.body.style.transition = "opacity 0.4s";
+    document.body.style.opacity = "0";
 
-    setTimeout(loadCelebration, 600);
+    setTimeout(() => {
+        document.body.style.opacity = "1";
+        loadCelebration();
+    }, 400);
 };
 
 
