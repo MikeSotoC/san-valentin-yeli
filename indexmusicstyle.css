@@ -193,3 +193,27 @@ html, body {
             0%, 100% { transform: scaleY(1); }
             50% { transform: scaleY(0.5); }
         }
+
+/* =========================
+   MÚSICA EN CELULAR
+========================= */
+@media (max-width: 768px) {
+
+    .music-btn {
+        width: 65px;
+        height: 65px;
+        font-size: 24px;
+        bottom: 15px;
+        right: 15px;
+        box-shadow: 0 4px 18px rgba(255,105,180,0.6);
+    }
+
+    .music-btn:active {
+        transform: scale(0.95);
+    }
+
+    .music-bars {
+        height: 16px;
+    }
+}
+
