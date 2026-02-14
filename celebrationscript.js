@@ -229,8 +229,13 @@ const messages = [
         const container = document.getElementById("loveMeterContainer");
 
         fill.style.width = loveLevel + "%";
-        text.textContent = messages[Math.floor(loveLevel / 20)];
-
+        const index = Math.min(
+            messages.length - 1,
+            Math.floor((loveLevel / 100) * messages.length)
+        );
+        
+        text.textContent = messages[index];
+        
         if (loveLevel >= 100) {
             infinityMode = true;
             container.classList.add("morphing");
