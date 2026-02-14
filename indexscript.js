@@ -173,24 +173,37 @@ window.sayYes = function () {
     // CARGAR CELEBRATION SIN RECARGAR (SIN CORTAR MÚSICA)
     // =========================
 function loadCelebration() {
+
     fetch("celebration.html")
-        .then(res => res.text())
+        .then(response => response.text())
         .then(html => {
-            const app = document.getElementById("app");
-            app.innerHTML = html;
 
-            // Cargar CSS del celebration
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = "celebrationstyle.css";
-            document.head.appendChild(link);
+            // Reemplazar contenido
+            document.getElementById("app").innerHTML = html;
 
-            // Ejecutar JS del celebration
+            // Cargar CSS (solo una vez)
+            if (!document.getElementById("celebrationCSS")) {
+                const link = document.createElement("link");
+                link.id = "celebrationCSS";
+                link.rel = "stylesheet";
+                link.href = "celebrationstyle.css";
+                document.head.appendChild(link);
+            }
+
+            // Cargar JS y FORZAR ejecución
             const script = document.createElement("script");
             script.src = "celebrationscript.js";
+            script.defer = true;
+
+            script.onload = function () {
+                console.log("celebrationscript cargado correctamente");
+            };
+
             document.body.appendChild(script);
-        });
+        })
+        .catch(err => console.error("Error cargando celebration:", err));
 }
+
 
 
 
