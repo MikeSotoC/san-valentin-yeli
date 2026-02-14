@@ -3,74 +3,103 @@
 <head>
     <meta charset="UTF-8">
 
-    <!-- Viewport correcto para móviles -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- VIEWPORT CORRECTO (esto es lo más importante para celular) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>💕 Una pregunta especial para Yeli 💕</title>
     
-    <!-- Estilos principales -->
+    <!-- CSS principal -->
     <link rel="stylesheet" href="indexstyle.css">
 
-    <!-- Estilo del botón de música -->
+    <!-- CSS del botón de música -->
     <link rel="stylesheet" href="indexmusicstyle.css">
 </head>
 <body>
 
-    <!-- Fondo con corazones flotantes -->
+    <!-- Fondo con corazones -->
     <div class="hearts-container" id="heartsContainer"></div>
 
-    <!-- Elementos decorativos -->
+    <!-- Decoraciones -->
     <div class="decoration deco-1">🌸</div>
     <div class="decoration deco-2">🌺</div>
     <div class="decoration deco-3">🌷</div>
     <div class="decoration deco-4">🌹</div>
 
-    <!-- Osito gigante -->
+    <!-- =========================
+         OSITO
+    ========================= -->
     <div class="teddy-wrapper">
-        
+
+        <!-- Corazones sobre el osito -->
         <div class="teddy-hearts">
             <span class="teddy-love">💕</span>
             <span class="teddy-love">💖</span>
             <span class="teddy-love">💗</span>
         </div>
 
+        <!-- Cabeza -->
         <div class="teddy-head">🧸</div>
 
+        <!-- Cuerpo -->
         <div class="teddy-body">
-            
+
             <div class="teddy-torso">🧸</div>
+
             <div class="teddy-paw-left">🐾</div>
 
-            <!-- TARJETA -->
+            <!-- =========================
+                 TARJETA
+            ========================= -->
             <div class="card" id="mainCard">
+
                 <div class="big-heart">💖</div>
-                
-                <h1 class="title">Hola <span class="name-highlight">Yeli</span> 💖</h1>
-                <p class="subtitle">Quería hacer algo especial para nuestro primer San Valentín juntos...</p>
-                
+
+                <h1 class="title">
+                    Hola <span class="name-highlight">Yeli</span> 💖
+                </h1>
+
+                <p class="subtitle">
+                    Quería hacer algo especial para nuestro primer San Valentín juntos...
+                </p>
+
                 <h2 class="question">
-                    Nuestro primer San Valentín juntos, Yeli 💕  
+                    Nuestro primer San Valentín juntos 💕  
+                    <br>
                     ¿Lista para celebrarlo conmigo?
                 </h2>
 
+                <!-- Botones -->
                 <div class="buttons-container" id="buttonsContainer">
-                    <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">¡Sí, mi amor! 💖</button>
-                    <button class="btn btn-no" id="noBtn" onmouseover="runAway()" onclick="runAway()">No</button>
+                    <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">
+                        ¡Sí, mi amor! 💖
+                    </button>
+
+                    <button class="btn btn-no" id="noBtn"
+                        onmouseover="runAway()"
+                        onclick="runAway()">
+                        No
+                    </button>
                 </div>
 
+                <!-- Nota -->
                 <div class="love-note">
-                    Nuestro primer San Valentín juntos…  
-                    y el primero de muchos más que quiero vivir contigo 💕
+                    <p>
+                        Nuestro primer San Valentín juntos…  
+                        y el primero de muchos más que quiero vivir contigo 💕
+                    </p>
                 </div>
+
             </div>
 
             <div class="teddy-paw-right">🐾</div>
         </div>
 
+        <!-- Patitas -->
         <div class="teddy-feet">
             <div class="teddy-foot teddy-foot-left">🐾</div>
             <div class="teddy-foot teddy-foot-right">🐾</div>
         </div>
+
     </div>
 
     <!-- Mensaje del botón No -->
@@ -78,14 +107,19 @@
         ¡Nop! Esa no es una opción 😜💕
     </div>
 
-    <!-- Música -->
+    <!-- =========================
+         MÚSICA
+    ========================= -->
     <audio id="bgMusic" loop preload="auto">
         <source src="Where-Is-My-Husband.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Botón música -->
     <button id="musicToggle" class="music-btn">🎵</button>
 
-    <!-- Scripts -->
+    <!-- =========================
+         SCRIPTS (al final para mejor rendimiento en móvil)
+    ========================= -->
     <script src="indexscript.js"></script>
     <script src="indexmusicscript.js"></script>
 
