@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
     // CARGAR CELEBRATION SIN RECARGAR (SIN CORTAR MÚSICA)
     // =========================
-    function loadCelebration() {
+function loadCelebration() {
 
     document.body.style.opacity = "0";
 
@@ -185,50 +185,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 const doc = parser.parseFromString(html, "text/html");
 
                 // =========================
-                // 1. Cargar CSS del HEAD
+                // 1. Cargar CSS
                 // =========================
                 const links = doc.head.querySelectorAll("link[rel='stylesheet']");
                 links.forEach(link => {
                     const newLink = document.createElement("link");
                     newLink.rel = "stylesheet";
-                    newLink.href = link.getAttribute("href");
+                    newLink.href = link.href;
                     document.head.appendChild(newLink);
                 });
 
                 // =========================
-                // 2. Reemplazar BODY
+                // 2. Reemplazar contenido
                 // =========================
                 document.body.innerHTML = doc.body.innerHTML;
 
                 // =========================
-                // 3. Ejecutar scripts correctamente
+                // 3. Cargar scripts MANUALMENTE
                 // =========================
-                const scripts = doc.querySelectorAll("script");
+                const scriptTags = doc.body.querySelectorAll("script[src]");
 
-                scripts.forEach(oldScript => {
-                    const newScript = document.createElement("script");
-
-                    if (oldScript.src) {
-                        newScript.src = oldScript.getAttribute("src");
-                        newScript.async = false; // IMPORTANTE
-                    } else {
-                        newScript.textContent = oldScript.textContent;
-                    }
-
-                    document.body.appendChild(newScript);
+                scriptTags.forEach(tag => {
+                    const script = document.createElement("script");
+                    script.src = tag.getAttribute("src");
+                    script.async = false;
+                    document.body.appendChild(script);
                 });
 
-                // =========================
-                // 4. Mostrar cuando todo está listo
-                // =========================
-                setTimeout(() => {
-                    document.body.style.opacity = "1";
-                }, 100);
+                document.body.style.opacity = "1";
 
             });
 
     }, 400);
 }
+
 
 
     // =========================
