@@ -190,20 +190,33 @@ const loveReasons = [
     // =========================
     // ABRAZO
     // =========================
-    function sendVirtualHug() {
-        const hug = document.getElementById("hugAnimation");
-        const msg = document.getElementById("hugMessage");
+    let hugIndex = 0;
 
-        hug.classList.add("show");
-        msg.classList.add("show");
+function sendVirtualHug() {
+    const hug = document.getElementById("hugAnimation");
+    const msg = document.getElementById("hugMessage");
+    const gif = document.getElementById("hugGif");
 
-        burstConfetti();
+    const hugs = [
+        "abrazo1.webp",
+        "abrazo2.webp"
+    ];
 
-        setTimeout(() => {
-            hug.classList.remove("show");
-            msg.classList.remove("show");
-        }, 3500);
-    }
+    // Alternar entre los dos
+    gif.src = hugs[hugIndex];
+    hugIndex = (hugIndex + 1) % hugs.length;
+
+    hug.classList.add("show");
+    msg.classList.add("show");
+
+    burstConfetti();
+
+    setTimeout(() => {
+        hug.classList.remove("show");
+        msg.classList.remove("show");
+    }, 3500);
+}
+
 
     // =========================
     // MEDIDOR DE AMOR
