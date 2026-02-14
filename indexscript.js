@@ -134,9 +134,11 @@ document.addEventListener("DOMContentLoaded", function () {
             noBtn.style.fontSize = fontSize + 'rem';
         }
 
-        if (runAwayCount > 10) {
-            noBtn.style.opacity = Math.max(0.4, 1 - (runAwayCount - 10) * 0.1);
-        }
+       // Reducir opacidad SOLO en escritorio
+if (runAwayCount > 10 && window.innerWidth > 768) {
+    noBtn.style.opacity = Math.max(0.7, 1 - (runAwayCount - 10) * 0.05);
+}
+
 
         if (runAwayCount === 15) noBtn.textContent = "Está bien 😅";
         if (runAwayCount === 20) noBtn.textContent = "Vale, vale 🏳️";
