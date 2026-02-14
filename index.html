@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <!-- VIEWPORT CORRECTO (esto es lo más importante para celular) -->
+    <!-- Viewport correcto -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>💕 Una pregunta especial para Yeli 💕</title>
@@ -16,101 +16,9 @@
 </head>
 <body>
 
-    <!-- Fondo con corazones -->
-    <div class="hearts-container" id="heartsContainer"></div>
-
-    <!-- Decoraciones -->
-    <div class="decoration deco-1">🌸</div>
-    <div class="decoration deco-2">🌺</div>
-    <div class="decoration deco-3">🌷</div>
-    <div class="decoration deco-4">🌹</div>
-
     <!-- =========================
-         OSITO
-    ========================= -->
-    <div class="teddy-wrapper">
-
-        <!-- Corazones sobre el osito -->
-        <div class="teddy-hearts">
-            <span class="teddy-love">💕</span>
-            <span class="teddy-love">💖</span>
-            <span class="teddy-love">💗</span>
-        </div>
-
-        <!-- Cabeza -->
-        <div class="teddy-head">🧸</div>
-
-        <!-- Cuerpo -->
-        <div class="teddy-body">
-
-            <div class="teddy-torso">🧸</div>
-
-            <div class="teddy-paw-left">🐾</div>
-
-            <!-- =========================
-                 TARJETA
-            ========================= -->
-            <div class="card" id="mainCard">
-
-                <div class="big-heart">💖</div>
-
-                <h1 class="title">
-                    Hola <span class="name-highlight">Yeli</span> 💖
-                </h1>
-
-                <p class="subtitle">
-                    Quería hacer algo especial para nuestro primer San Valentín juntos...
-                </p>
-
-                <h2 class="question">
-                    Nuestro primer San Valentín juntos 💕  
-                    <br>
-                    ¿Lista para celebrarlo conmigo?
-                </h2>
-
-                <!-- Botones -->
-                <div class="buttons-container" id="buttonsContainer">
-                    <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">
-                        ¡Sí, mi amor! 💖
-                    </button>
-
-<button class="btn btn-no" id="noBtn"
-    onmouseover="runAway()"
-    onclick="runAway()">
-
-
-                        No
-                    </button>
-                </div>
-
-                <!-- Nota -->
-                <div class="love-note">
-                    <p>
-                        Nuestro primer San Valentín juntos…  
-                        y el primero de muchos más que quiero vivir contigo 💕
-                    </p>
-                </div>
-
-            </div>
-
-            <div class="teddy-paw-right">🐾</div>
-        </div>
-
-        <!-- Patitas -->
-        <div class="teddy-feet">
-            <div class="teddy-foot teddy-foot-left">🐾</div>
-            <div class="teddy-foot teddy-foot-right">🐾</div>
-        </div>
-
-    </div>
-
-    <!-- Mensaje del botón No -->
-    <div class="hover-message" id="hoverMessage">
-        ¡Nop! Esa no es una opción 😜💕
-    </div>
-
-    <!-- =========================
-         MÚSICA
+         MÚSICA (FUERA DEL APP)
+         (Así no se reinicia)
     ========================= -->
     <audio id="bgMusic" loop preload="auto">
         <source src="Melendi-La_promesa.mp3" type="audio/mpeg">
@@ -119,9 +27,104 @@
     <!-- Botón música -->
     <button id="musicToggle" class="music-btn">🎵</button>
 
+
     <!-- =========================
-         SCRIPTS (al final para mejor rendimiento en móvil)
+         CONTENIDO PRINCIPAL
+         (Esto se reemplaza por celebration)
     ========================= -->
+    <div id="app">
+
+        <!-- Fondo con corazones -->
+        <div class="hearts-container" id="heartsContainer"></div>
+
+        <!-- Decoraciones -->
+        <div class="decoration deco-1">🌸</div>
+        <div class="decoration deco-2">🌺</div>
+        <div class="decoration deco-3">🌷</div>
+        <div class="decoration deco-4">🌹</div>
+
+        <!-- OSITO -->
+        <div class="teddy-wrapper">
+
+            <!-- Corazones sobre el osito -->
+            <div class="teddy-hearts">
+                <span class="teddy-love">💕</span>
+                <span class="teddy-love">💖</span>
+                <span class="teddy-love">💗</span>
+            </div>
+
+            <!-- Cabeza -->
+            <div class="teddy-head">🧸</div>
+
+            <!-- Cuerpo -->
+            <div class="teddy-body">
+
+                <div class="teddy-torso">🧸</div>
+                <div class="teddy-paw-left">🐾</div>
+
+                <!-- TARJETA -->
+                <div class="card" id="mainCard">
+
+                    <div class="big-heart">💖</div>
+
+                    <h1 class="title">
+                        Hola <span class="name-highlight">Yeli</span> 💖
+                    </h1>
+
+                    <p class="subtitle">
+                        Quería hacer algo especial para nuestro primer San Valentín juntos...
+                    </p>
+
+                    <h2 class="question">
+                        Nuestro primer San Valentín juntos 💕  
+                        <br>
+                        ¿Lista para celebrarlo conmigo?
+                    </h2>
+
+                    <!-- Botones -->
+                    <div class="buttons-container" id="buttonsContainer">
+                        <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">
+                            ¡Sí, mi amor! 💖
+                        </button>
+
+                        <button class="btn btn-no" id="noBtn"
+                            onmouseover="runAway()"
+                            onclick="runAway()">
+                            No
+                        </button>
+                    </div>
+
+                    <!-- Nota -->
+                    <div class="love-note">
+                        <p>
+                            Nuestro primer San Valentín juntos…  
+                            y el primero de muchos más que quiero vivir contigo 💕
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="teddy-paw-right">🐾</div>
+            </div>
+
+            <!-- Patitas -->
+            <div class="teddy-feet">
+                <div class="teddy-foot teddy-foot-left">🐾</div>
+                <div class="teddy-foot teddy-foot-right">🐾</div>
+            </div>
+
+        </div>
+
+        <!-- Mensaje del botón No -->
+        <div class="hover-message" id="hoverMessage">
+            ¡Nop! Esa no es una opción 😜💕
+        </div>
+
+    </div>
+    <!-- FIN DEL APP -->
+
+
+    <!-- Scripts -->
     <script src="indexscript.js"></script>
     <script src="indexmusicscript.js"></script>
 
