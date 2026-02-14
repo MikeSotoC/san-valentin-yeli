@@ -2,13 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Viewport correcto para móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
     <title>💕 Una pregunta especial para Yeli 💕</title>
     
-    <!-- CSS externo -->
+    <!-- Estilos principales -->
     <link rel="stylesheet" href="indexstyle.css">
+
+    <!-- Estilo del botón de música -->
+    <link rel="stylesheet" href="indexmusicstyle.css">
 </head>
 <body>
+
     <!-- Fondo con corazones flotantes -->
     <div class="hearts-container" id="heartsContainer"></div>
 
@@ -21,78 +28,66 @@
     <!-- Osito gigante -->
     <div class="teddy-wrapper">
         
-        <!-- Corazones flotando sobre el osito -->
         <div class="teddy-hearts">
             <span class="teddy-love">💕</span>
             <span class="teddy-love">💖</span>
             <span class="teddy-love">💗</span>
         </div>
 
-        <!-- Cabeza del osito -->
         <div class="teddy-head">🧸</div>
 
-        <!-- Cuerpo del osito -->
         <div class="teddy-body">
             
-            <!-- Fondo del torso -->
             <div class="teddy-torso">🧸</div>
-            
-            <!-- Patita izquierda -->
             <div class="teddy-paw-left">🐾</div>
 
-            <!-- Tarjeta principal -->
+            <!-- TARJETA -->
             <div class="card" id="mainCard">
                 <div class="big-heart">💖</div>
                 
                 <h1 class="title">Hola <span class="name-highlight">Yeli</span> 💖</h1>
-               <p class="subtitle">Quería hacer algo especial para nuestro primer San Valentín juntos...</p>
+                <p class="subtitle">Quería hacer algo especial para nuestro primer San Valentín juntos...</p>
                 
-               <h2 class="question">
-                   Nuestro primer San Valentín juntos, Yeli 💕  
-                   ¿Lista para celebrarlo conmigo?
-               </h2>
+                <h2 class="question">
+                    Nuestro primer San Valentín juntos, Yeli 💕  
+                    ¿Lista para celebrarlo conmigo?
+                </h2>
 
-                
                 <div class="buttons-container" id="buttonsContainer">
                     <button class="btn btn-yes" id="yesBtn" onclick="sayYes()">¡Sí, mi amor! 💖</button>
                     <button class="btn btn-no" id="noBtn" onmouseover="runAway()" onclick="runAway()">No</button>
                 </div>
 
                 <div class="love-note">
-                    <p>
-                        Nuestro primer San Valentín juntos…  
-                        y el primero de muchos más que quiero vivir contigo 💕
-                    </p>
+                    Nuestro primer San Valentín juntos…  
+                    y el primero de muchos más que quiero vivir contigo 💕
                 </div>
             </div>
 
-            <!-- Patita derecha -->
             <div class="teddy-paw-right">🐾</div>
         </div>
 
-        <!-- Patitas inferiores -->
         <div class="teddy-feet">
             <div class="teddy-foot teddy-foot-left">🐾</div>
             <div class="teddy-foot teddy-foot-right">🐾</div>
         </div>
     </div>
 
-    <!-- Mensaje al pasar por el botón No -->
+    <!-- Mensaje del botón No -->
     <div class="hover-message" id="hoverMessage">
         ¡Nop! Esa no es una opción 😜💕
     </div>
 
-    <script src="indexscript.js"></script> 
-
-    <!-- Música de fondo -->
+    <!-- Música -->
     <audio id="bgMusic" loop preload="auto">
         <source src="Where-Is-My-Husband.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Botón de música -->
     <button id="musicToggle" class="music-btn">🎵</button>
 
-    <link rel="stylesheet" href="indexmusicstyle.css">
+    <!-- Scripts -->
+    <script src="indexscript.js"></script>
     <script src="indexmusicscript.js"></script>
+
 </body>
 </html>
