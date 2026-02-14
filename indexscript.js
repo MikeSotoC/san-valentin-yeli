@@ -187,11 +187,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 // =========================
                 // 1. Cargar CSS del HEAD
                 // =========================
-                const newLinks = doc.head.querySelectorAll("link[rel='stylesheet']");
-                newLinks.forEach(link => {
+                const links = doc.head.querySelectorAll("link[rel='stylesheet']");
+                links.forEach(link => {
                     const newLink = document.createElement("link");
                     newLink.rel = "stylesheet";
-                    newLink.href = link.href;
+                    newLink.href = link.getAttribute("href");
                     document.head.appendChild(newLink);
                 });
 
@@ -200,22 +200,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 // =========================
                 document.body.innerHTML = doc.body.innerHTML;
 
-                document.body.style.opacity = "1";
+                // =========================
+                // 3. Ejecutar scripts correctamente
+                // =========================
+                const scripts = doc.querySelectorAll("script");
 
-                // =========================
-                // 3. Ejecutar scripts
-                // =========================
-                const scripts = doc.body.querySelectorAll("script");
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement("script");
+
                     if (oldScript.src) {
-                        newScript.src = oldScript.src;
-                        newScript.defer = true;
+                        newScript.src = oldScript.getAttribute("src");
+                        newScript.async = false; // IMPORTANTE
                     } else {
                         newScript.textContent = oldScript.textContent;
                     }
+
                     document.body.appendChild(newScript);
                 });
+
+                // =========================
+                // 4. Mostrar cuando todo está listo
+                // =========================
+                setTimeout(() => {
+                    document.body.style.opacity = "1";
+                }, 100);
 
             });
 
