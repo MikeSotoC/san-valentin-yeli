@@ -351,9 +351,8 @@ if (loveMeterContainer) {
 setInterval(updateRelationshipTime, 1000);
 updateRelationshipTime();
 
-
 // =========================
-// MÚSICA (usar la que ya está sonando)
+// MÚSICA (CONTINUAR DESDE INDEX)
 // =========================
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicToggle");
@@ -361,24 +360,33 @@ const musicBtn = document.getElementById("musicToggle");
 let playing = false;
 
 if (music) {
+
     music.volume = 0.4;
 
+    // Recuperar estado
     const savedTime = sessionStorage.getItem("musicTime");
     const wasPlaying = sessionStorage.getItem("musicWasPlaying");
 
-    if (savedTime !== null) {
-        music.currentTime = parseFloat(savedTime);
-    }
+    // Esperar a que el audio cargue
+    music.addEventListener("loadedmetadata", function () {
 
-    if (wasPlaying === "true") {
-        music.play().catch(() => {});
-        playing = true;
-    }
+        if (savedTime !== null) {
+            music.currentTime = parseFloat(savedTime);
+        }
 
-    sessionStorage.removeItem("musicTime");
-    sessionStorage.removeItem("musicWasPlaying");
+        if (wasPlaying === "true") {
+            music.play().catch(() => {});
+            playing = true;
+            if (musicBtn) musicBtn.classList.add("playing");
+        }
+
+        // Limpiar memoria
+        sessionStorage.removeItem("musicTime");
+        sessionStorage.removeItem("musicWasPlaying");
+    });
 }
 
+// Botón música
 if (musicBtn && music) {
     musicBtn.addEventListener("click", function () {
         if (playing) {
@@ -391,6 +399,7 @@ if (musicBtn && music) {
         playing = !playing;
     });
 }
+
 
 
 
