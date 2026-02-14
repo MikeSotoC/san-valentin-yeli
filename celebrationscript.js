@@ -1,22 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     // =========================
-    // CONFETTI SYSTEM
+    // CONFETTI
     // =========================
-    const canvas = document.getElementById('confettiCanvas');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
-
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    const confettiColors = ['#ff69b4', '#ff1493', '#a855f7', '#ffd700', '#ffffff'];
-    const confettiShapes = ['circle', 'square', 'heart'];
-
+    const confettiColors = ["#ff69b4", "#ff1493", "#a855f7", "#ffd700", "#ffffff"];
     let confettiParticles = [];
 
     class Confetti {
@@ -28,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (fromCenter) {
                 this.x = canvas.width / 2;
                 this.y = canvas.height / 2;
-                this.speedY = Math.random() * 15 - 12;
+                this.speedY = Math.random() * 15 - 10;
                 this.speedX = Math.random() * 20 - 10;
             } else {
                 this.x = Math.random() * canvas.width;
@@ -37,9 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.speedX = Math.random() * 0.5 - 0.25;
             }
 
-            this.size = Math.random() * 8 + 4;
+            this.size = Math.random() * 6 + 4;
             this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-            this.shape = confettiShapes[Math.floor(Math.random() * confettiShapes.length)];
         }
 
         update() {
@@ -53,34 +49,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         draw() {
             ctx.fillStyle = this.color;
-
-            if (this.shape === 'circle') {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (this.shape === 'square') {
-                ctx.fillRect(this.x, this.y, this.size, this.size);
-            } else {
-                ctx.font = this.size * 2 + "px Arial";
-                ctx.fillText("💖", this.x, this.y);
-            }
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
         }
     }
 
     function createConfetti(count = 120) {
         for (let i = 0; i < count; i++) {
-            confettiParticles.push(new Confetti(false));
+            confettiParticles.push(new Confetti());
         }
     }
 
     function animateConfetti() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
         confettiParticles.forEach(p => {
             p.update();
             p.draw();
         });
-
         requestAnimationFrame(animateConfetti);
     }
 
@@ -90,20 +76,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Hacer global para HTML
+    window.handleInteraction = function (event, type) {
+        fillLoveMeter(10);
+
+        if (type === "confetti") burstConfetti();
+        if (type === "hug") sendVirtualHug();
+        if (type === "jar") openLoveNote();
+        if (type === "heart") burstConfetti();
+    };
+
     // =========================
     // FONDO FLOTANTE
     // =========================
     function createFloatingItems() {
-        const container = document.getElementById('floatingBg');
-        const items = ['💕', '💖', '✨', '🌸', '🦋'];
+        const container = document.getElementById("floatingBg");
+        const items = ["💕", "💖", "✨", "🌸", "🦋"];
 
         for (let i = 0; i < 20; i++) {
-            const item = document.createElement('div');
-            item.className = 'floating-item';
+            const item = document.createElement("div");
+            item.className = "floating-item";
             item.innerHTML = items[Math.floor(Math.random() * items.length)];
-            item.style.left = Math.random() * 100 + 'vw';
-            item.style.top = Math.random() * 100 + 'vh';
-            item.style.fontSize = (Math.random() * 25 + 20) + 'px';
+            item.style.left = Math.random() * 100 + "vw";
+            item.style.top = Math.random() * 100 + "vh";
+            item.style.fontSize = (Math.random() * 25 + 20) + "px";
             container.appendChild(item);
         }
     }
@@ -113,59 +109,58 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================
     const loveReasons = [
         { emoji: "😊", text: "Amo tu sonrisa, ilumina todo mi mundo." },
-        { emoji: "💭", text: "Porque siempre estás en mis pensamientos." },
+        { emoji: "💭", text: "Siempre estás en mis pensamientos." },
         { emoji: "🎵", text: "Tu risa es mi sonido favorito." },
         { emoji: "🤗", text: "Contigo me siento en paz." },
         { emoji: "✨", text: "Haces mágicos los momentos simples." },
-        { emoji: "💪", text: "Siempre crees en mí." },
         { emoji: "🦋", text: "Aún me provocas mariposas." },
-        { emoji: "🌟", text: "Me inspiras a ser mejor." },
         { emoji: "💕", text: "Te elegiría en cada vida." },
         { emoji: "💖", text: "Te amo por ser tú, Yeli." }
     ];
 
-    let currentReasonIndex = 0;
+    let reasonIndex = 0;
 
     window.openLoveNote = function () {
-        const popup = document.getElementById('loveNotePopup');
-        const overlay = document.getElementById('overlay');
-        const reason = loveReasons[currentReasonIndex];
+        const popup = document.getElementById("loveNotePopup");
+        const overlay = document.getElementById("overlay");
 
-        document.getElementById('noteEmoji').textContent = reason.emoji;
-        document.getElementById('noteText').textContent = reason.text;
-        document.getElementById('noteNumber').textContent =
-            `Razón ${currentReasonIndex + 1} de ${loveReasons.length}`;
+        const reason = loveReasons[reasonIndex];
 
-        overlay.classList.add('show');
-        popup.classList.add('show');
+        document.getElementById("noteEmoji").textContent = reason.emoji;
+        document.getElementById("noteText").textContent = reason.text;
+        document.getElementById("noteNumber").textContent =
+            `Razón ${reasonIndex + 1} de ${loveReasons.length}`;
 
-        currentReasonIndex = (currentReasonIndex + 1) % loveReasons.length;
+        popup.classList.add("show");
+        overlay.classList.add("show");
+
+        reasonIndex = (reasonIndex + 1) % loveReasons.length;
 
         burstConfetti();
     };
 
     window.closeLoveNote = function () {
-        document.getElementById('overlay').classList.remove('show');
-        document.getElementById('loveNotePopup').classList.remove('show');
+        document.getElementById("overlay").classList.remove("show");
+        document.getElementById("loveNotePopup").classList.remove("show");
     };
 
     // =========================
-    // ABRAZO VIRTUAL
+    // ABRAZO
     // =========================
-    window.sendVirtualHug = function () {
-        const hug = document.getElementById('hugAnimation');
-        const msg = document.getElementById('hugMessage');
+    function sendVirtualHug() {
+        const hug = document.getElementById("hugAnimation");
+        const msg = document.getElementById("hugMessage");
 
-        hug.classList.add('show');
-        msg.classList.add('show');
+        hug.classList.add("show");
+        msg.classList.add("show");
 
         burstConfetti();
 
         setTimeout(() => {
-            hug.classList.remove('show');
-            msg.classList.remove('show');
-        }, 3000);
-    };
+            hug.classList.remove("show");
+            msg.classList.remove("show");
+        }, 3500);
+    }
 
     // =========================
     // MEDIDOR DE AMOR
@@ -175,61 +170,103 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const messages = [
         "¡Sigue tocando! 💕",
-        "¡El amor está creciendo! 💖",
+        "¡El amor crece! 💖",
         "¡Muchísimo amor! 💗",
         "¡Casi al máximo! 💓",
-        "¡Amor desbordado! 💝"
+        "¡Amor infinito! 💝"
     ];
 
-    window.fillLoveMeter = function (amount = 10) {
+    function fillLoveMeter(amount) {
         if (infinityMode) return;
 
         loveLevel = Math.min(100, loveLevel + amount);
 
-        const fill = document.getElementById('loveMeterFill');
-        const text = document.getElementById('loveMeterText');
+        const fill = document.getElementById("loveMeterFill");
+        const text = document.getElementById("loveMeterText");
+        const infinity = document.getElementById("infinityContainer");
+        const container = document.getElementById("loveMeterContainer");
 
         fill.style.width = loveLevel + "%";
-
         text.textContent = messages[Math.floor(loveLevel / 20)];
 
         if (loveLevel >= 100) {
             infinityMode = true;
-            text.textContent = "∞ Amor infinito para Yeli ∞";
+            container.classList.add("morphing");
+            setTimeout(() => {
+                infinity.classList.add("show");
+                text.textContent = "∞ Amor infinito para Yeli ∞";
+                text.classList.add("infinity-text");
+            }, 300);
+
             burstConfetti();
         }
-    };
+    }
 
     // =========================
-    // INTERACCIONES
-    // =========================
-    window.handleInteraction = function (event, type) {
-        fillLoveMeter(10);
-
-        if (type === "confetti") burstConfetti();
-        if (type === "hug") sendVirtualHug();
-        if (type === "jar") openLoveNote();
-    };
-
-    // =========================
-    // CONTADOR
+    // COUNTDOWN SAN VALENTÍN
     // =========================
     function updateCountdown() {
-        const date = new Date("February 14, 2026 00:00:00").getTime();
+        const target = new Date("February 14, 2026 00:00:00").getTime();
         const now = new Date().getTime();
-        const distance = date - now;
+        const distance = target - now;
 
         if (distance < 0) {
-            document.getElementById('countdownSection').innerHTML =
+            document.getElementById("countdownSection").innerHTML =
                 "<p class='countdown-title'>💖 ¡Feliz San Valentín, Yeli! 💖</p>";
             return;
         }
 
-        document.getElementById('days').textContent =
+        document.getElementById("days").textContent =
             Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").textContent =
+            Math.floor((distance / (1000 * 60 * 60)) % 24);
+        document.getElementById("minutes").textContent =
+            Math.floor((distance / (1000 * 60)) % 60);
+        document.getElementById("seconds").textContent =
+            Math.floor((distance / 1000) % 60);
     }
 
-    setInterval(updateCountdown, 1000);
+    // =========================
+    // TIEMPO JUNTOS (28/03/2025)
+    // =========================
+    function updateRelationshipTime() {
+        const startDate = new Date("March 28, 2025 00:00:00").getTime();
+        const now = new Date().getTime();
+        const diff = now - startDate;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        const d = document.getElementById("relDays");
+        if (!d) return;
+
+        document.getElementById("relDays").textContent = days;
+        document.getElementById("relHours").textContent = hours;
+        document.getElementById("relMinutes").textContent = minutes;
+        document.getElementById("relSeconds").textContent = seconds;
+    }
+
+    // =========================
+    // MÚSICA
+    // =========================
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicToggle");
+
+    let playing = false;
+    music.volume = 0.4;
+
+    musicBtn.addEventListener("click", function () {
+        if (playing) {
+            music.pause();
+            musicBtn.classList.remove("playing");
+        } else {
+            music.play();
+            musicBtn.classList.add("playing");
+        }
+        playing = !playing;
+    });
 
     // =========================
     // INICIALIZACIÓN
@@ -237,8 +274,13 @@ document.addEventListener("DOMContentLoaded", function () {
     createConfetti();
     animateConfetti();
     createFloatingItems();
+    updateCountdown();
+    updateRelationshipTime();
+
+    setInterval(updateCountdown, 1000);
+    setInterval(updateRelationshipTime, 1000);
 
     setTimeout(burstConfetti, 500);
 
-    console.log("💕 Hecho con amor para Yeli 💕");
+    console.log("💕 Hecho con amor infinito para Yeli 💕");
 });
