@@ -78,12 +78,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Hacer global para HTML
     window.handleInteraction = function (event, type) {
-        fillLoveMeter(10);
+        // Solo aumentar el amor en interacciones específicas
+    if (type === "jar") {
+        openLoveNote();
+        fillLoveMeter(100 / loveReasons.length); // sincronizado con las razones
+        return;
+    }
 
-        if (type === "confetti") burstConfetti();
-        if (type === "hug") sendVirtualHug();
-        if (type === "jar") openLoveNote();
-        if (type === "heart") burstConfetti();
+    if (type === "confetti") {
+        burstConfetti();
+        return;
+    }
+
+    if (type === "hug") {
+        sendVirtualHug();
+        fillLoveMeter(5);
+        return;
+    }
+
+    if (type === "heart") {
+        burstConfetti();
+        fillLoveMeter(3);
+        return;
+    }
     };
 
     // =========================
@@ -219,35 +236,38 @@ const messages = [
 
 
     function fillLoveMeter(amount) {
-        if (infinityMode) return;
+    if (infinityMode) return;
 
-        loveLevel = Math.min(100, loveLevel + amount);
+    loveLevel = Math.min(100, loveLevel + amount);
 
-        const fill = document.getElementById("loveMeterFill");
-        const text = document.getElementById("loveMeterText");
-        const infinity = document.getElementById("infinityContainer");
-        const container = document.getElementById("loveMeterContainer");
+    const fill = document.getElementById("loveMeterFill");
+    const text = document.getElementById("loveMeterText");
+    const infinity = document.getElementById("infinityContainer");
+    const container = document.getElementById("loveMeterContainer");
 
-        fill.style.width = loveLevel + "%";
-        const index = Math.min(
-            messages.length - 1,
-            Math.floor((loveLevel / 100) * messages.length)
-        );
-        
-        text.textContent = messages[index];
-        
-        if (loveLevel >= 100) {
-            infinityMode = true;
-            container.classList.add("morphing");
-            setTimeout(() => {
-                infinity.classList.add("show");
-                text.textContent = "∞ Amor infinito para Yeli ∞";
-                text.classList.add("infinity-text");
-            }, 300);
+    // Actualizar barra
+    fill.style.width = loveLevel + "%";
 
-            burstConfetti();
-        }
+    // ===== SINCRONIZACIÓN PERFECTA CON LOS MENSAJES =====
+    const progress = loveLevel / 100;
+    const index = Math.floor(progress * (messages.length - 1));
+    text.textContent = messages[index];
+
+    // ===== MODO INFINITO =====
+    if (loveLevel >= 100) {
+        infinityMode = true;
+        container.classList.add("morphing");
+
+        setTimeout(() => {
+            infinity.classList.add("show");
+            text.textContent = "∞ Amor infinito para Yeli ∞";
+            text.classList.add("infinity-text");
+        }, 300);
+
+        burstConfetti();
     }
+}
+
 
     // =========================
     // COUNTDOWN SAN VALENTÍN
