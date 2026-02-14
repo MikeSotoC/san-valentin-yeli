@@ -352,49 +352,26 @@ setInterval(updateRelationshipTime, 1000);
 updateRelationshipTime();
 
 
-    // =========================
-    // MÚSICA
-    // =========================
-    // =========================
-// MÚSICA (CONTINUAR DESDE INDEX)
+// =========================
+// MÚSICA (usar la que ya está sonando)
 // =========================
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicToggle");
 
-let playing = false;
+if (music && musicBtn) {
 
-if (music) {
-    music.volume = 0.4;
+    // Detectar si ya estaba sonando
+    let playing = !music.paused;
+    musicBtn.classList.toggle("playing", playing);
 
-    // Recuperar estado guardado
-    const savedTime = sessionStorage.getItem("musicTime");
-    const wasPlaying = sessionStorage.getItem("musicWasPlaying");
-
-    if (savedTime !== null) {
-        music.currentTime = parseFloat(savedTime);
-    }
-
-    if (wasPlaying === "true") {
-        music.play().catch(() => {});
-        playing = true;
-    }
-
-    // Limpiar para la próxima navegación
-    sessionStorage.removeItem("musicTime");
-    sessionStorage.removeItem("musicWasPlaying");
-}
-
-// Botón de música
-if (musicBtn && music) {
     musicBtn.addEventListener("click", function () {
-        if (playing) {
-            music.pause();
-            musicBtn.classList.remove("playing");
-        } else {
+        if (music.paused) {
             music.play().catch(() => {});
             musicBtn.classList.add("playing");
+        } else {
+            music.pause();
+            musicBtn.classList.remove("playing");
         }
-        playing = !playing;
     });
 }
 
